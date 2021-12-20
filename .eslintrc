@@ -1,0 +1,52 @@
+{
+    "env": {
+        "browser": true,
+        "es6": true,
+        "es2017": true
+    },
+    "root": true,
+    "plugins": ["prettier", "import"],
+    "rules": {
+        "prettier/prettier": [
+            "error",
+            {
+                "endOfLine": "auto",
+                "arrowParens": "avoid"
+            }
+        ],
+        "semi": "off",
+        "import/no-absolute-path": "error",
+        "import/no-useless-path-segments": ["warn", { "noUselessIndex": true }],
+        "import/no-deprecated": "warn",
+        "import/no-unresolved": "off",
+        "import/first": "error",
+        "import/extensions": ["warn", "never", { "svg": "always" }],
+        "import/newline-after-import": "warn",
+        "import/order": [
+            "warn",
+            {
+                "groups": [
+                    "builtin",
+                    "external",
+                    "internal",
+                    "parent",
+                    "sibling",
+                    "index"
+                ]
+            }
+        ]
+    },
+    "extends": [
+        "react-app",
+        "prettier",
+        "eslint:recommended",
+        "plugin:import/errors"
+    ],
+    "settings": {
+        "import/resolver": {
+            "node": {
+                "paths": ["react-project-kitchen-frontend>"]
+            }
+        }
+    }
+}
