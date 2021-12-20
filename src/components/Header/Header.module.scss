@@ -1,0 +1,47 @@
+@import "styles";
+
+.header {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.04), 0px 0px 4px rgba(0, 0, 0, 0.08), 0px 0px 1px rgba(0, 0, 0, 0.08);
+}
+
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+}
+
+.navBar {
+
+}
+
+.navList {
+  display: flex;
+}
+
+.navItem {
+
+}
+.navLink {
+  padding: 8px 16px;
+  display: flex;
+  align-items: cener;
+  cursor: pointer;
+  transition: color 0.3s ease;
+
+  svg {
+    margin-right: 11px;
+  }
+
+  &:hover, 
+  &:focus {
+    color: $color-accent;
+    text-decoration: none;
+  }
+
+}
