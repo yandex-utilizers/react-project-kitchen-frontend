@@ -4,3 +4,11 @@
     @include bold-32;
     color: $color-primary;
 }
+
+.Paragraf {
+    text-decoration: underline;
+
+    &__isActive {
+        text-decoration: unset;
+    }
+}

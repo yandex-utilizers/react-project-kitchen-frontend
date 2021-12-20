@@ -1,13 +1,27 @@
 @font-face {
-    font-family: "JetBrains Mono", monospace;
+    font-family: "Neue Machina", monospace;
     font-style: normal;
-    font-weight: 400;
-    src: url("../fonts/JetBrainsMono-Regular.ttf") format("ttf");
+    font-weight: 300;
+    src: url("../fonts/NeueMachina-Light.ttf") format("ttf");
 }
 
 @font-face {
-    font-family: "JetBrains Mono", monospace;
+    font-family: "Neue Machina", monospace;
+    font-style: normal;
+    font-weight: 400;
+    src: url("../fonts/NeueMachina-Regular.ttf") format("ttf");
+}
+
+@font-face {
+    font-family: "Neue Machina", monospace;
+    font-style: normal;
+    font-weight: 600;
+    src: url("../fonts/NeueMachina-Medium.ttf") format("ttf");
+}
+
+@font-face {
+    font-family: "Neue Machina", monospace;
     font-style: normal;
     font-weight: 700;
-    src: url("../fonts/JetBrainsMono-Bold.ttf") format("ttf");
+    src: url("../fonts/NeueMachina-Bold.ttf") format("ttf");
 }

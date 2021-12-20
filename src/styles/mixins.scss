@@ -1,4 +1,4 @@
-$base-font-family: "JetBrains Mono", monospace;
+$base-font-family: "Neue Machina", monospace;
 
 /* Regular/14 */
 @mixin regular-14 {
@@ -10,7 +10,7 @@ $base-font-family: "JetBrains Mono", monospace;
 }
 
 /* Bold/14 */
-@mixin regular-14 {
+@mixin bold-14 {
     font-family: $base-font-family;
     font-size: 14px;
     font-weight: 700;
