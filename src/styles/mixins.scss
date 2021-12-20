@@ -47,7 +47,7 @@ $accent-font-family: "Neue Machina", "Arial", sans-serif;
     line-height: 1.25;
 }
 
-@mixin default-text {
+@mixin text-default {
     font-family: $base-font-family;
     font-size: 16px;
     line-height: 24px;
@@ -57,4 +57,10 @@ $accent-font-family: "Neue Machina", "Arial", sans-serif;
     font-family: $accent-font-family;
     font-size: 64px;
     line-height: 64px;
+}
+
+@mixin text-headline {
+    font-family: $accent-font-family;
+    font-size: 24px;
+    line-height: 28px;
 }
