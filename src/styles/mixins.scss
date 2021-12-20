@@ -1,4 +1,6 @@
-$base-font-family: "Neue Machina", monospace;
+$base-font-family: "Lucida Sans Unicode", "Arial", sans-serif;
+$accent-font-family: "Neue Machina", "Arial", sans-serif;
+
 
 /* Regular/14 */
 @mixin regular-14 {
@@ -43,4 +45,16 @@ $base-font-family: "Neue Machina", monospace;
     font-weight: 700;
     font-style: normal;
     line-height: 1.25;
+}
+
+@mixin default-text {
+    font-family: $base-font-family;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+@mixin heading-h1 {
+    font-family: $accent-font-family;
+    font-size: 64px;
+    line-height: 64px;
 }

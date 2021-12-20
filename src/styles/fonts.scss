@@ -1,27 +1,54 @@
 @font-face {
-    font-family: "Neue Machina", monospace;
-    font-style: normal;
-    font-weight: 300;
-    src: url("../fonts/NeueMachina-Light.ttf") format("ttf");
-}
-
-@font-face {
-    font-family: "Neue Machina", monospace;
     font-style: normal;
     font-weight: 400;
-    src: url("../fonts/NeueMachina-Regular.ttf") format("ttf");
-}
-
-@font-face {
-    font-family: "Neue Machina", monospace;
+    font-family: "Neue Machina";
+  
+    font-display: swap;
+    src:
+      url("../fonts/neue-machina/NeueMachina-Regular.woff2") format("woff2"),
+      url("../fonts/neue-machina/NeueMachina-Regular.woff") format("woff");
+  }
+  
+  @font-face {
     font-style: normal;
-    font-weight: 600;
-    src: url("../fonts/NeueMachina-Medium.ttf") format("ttf");
-}
-
-@font-face {
-    font-family: "Neue Machina", monospace;
-    font-style: normal;
+    font-weight: 500;
+    font-family: "Neue Machina";
+  
+    font-display: swap;
+    src:
+      url("../fonts/neue-machina/NeueMachina-Medium.woff2") format("woff2"),
+      url("../fonts/neue-machina/NeueMachina-Medium.woff") format("woff");
+  }
+  
+  @font-face {
+    font-style: bold;
     font-weight: 700;
-    src: url("../fonts/NeueMachina-Bold.ttf") format("ttf");
-}
+    font-family: "Neue Machina";
+  
+    font-display: swap;
+    src:
+      url("../fonts/neue-machina/NeueMachina-Bold.woff2") format("woff2"),
+      url("../fonts/neue-machina/NeueMachina-Bold.woff") format("woff");
+  }
+  
+  @font-face {
+    font-style: black;
+    font-weight: 900;
+    font-family: "Neue Machina";
+  
+    font-display: swap;
+    src:
+      url("../fonts/neue-machina/NeueMachina-Black.woff2") format("woff2"),
+      url("../fonts/neue-machina/NeueMachina-Black.woff") format("woff");
+  }
+
+  @font-face {
+    font-style: normal;
+    font-weight: 400;
+    font-family: "Lucida Sans Unicode";
+  
+    font-display: swap;
+    src:
+      url("../fonts/lucida-sans/LucidaSansUnicode.woff2") format("woff2"),
+      url("../fonts/lucida-sans/LucidaSansUnicode.woff") format("woff");
+  }
