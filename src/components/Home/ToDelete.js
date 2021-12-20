@@ -1,11 +1,10 @@
 import React from "react";
-
-import "./ToDelete.scss";
+import classes from "./ToDelete.module.scss";
 
 function ToDelete() {
     return (
         <div className="to-delete">
-            <h1 className="Title">Hello World</h1>
+            <h1 className={classes.Title}>Hello World</h1>
             <h2 className="to-delete__title toDeleteTitle">Привет!</h2>
             <p className="to-delete__paragraph">
                 Этот компонент страницы вы можете удалить сразу. Он нужен, чтобы

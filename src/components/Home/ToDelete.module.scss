@@ -1,0 +1,6 @@
+@import "styles";
+
+.Title {
+    @include bold-32;
+    color: $color-primary;
+}

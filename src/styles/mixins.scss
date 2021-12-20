@@ -1,0 +1,46 @@
+$base-font-family: "JetBrains Mono", monospace;
+
+/* Regular/14 */
+@mixin regular-14 {
+    font-family: $base-font-family;
+    font-size: 14px;
+    font-weight: 400;
+    font-style: normal;
+    line-height: 1.25;
+}
+
+/* Bold/14 */
+@mixin regular-14 {
+    font-family: $base-font-family;
+    font-size: 14px;
+    font-weight: 700;
+    font-style: normal;
+    line-height: 1.25;
+}
+
+/* Regular/16 */
+@mixin regular-16 {
+    font-family: $base-font-family;
+    font-size: 16px;
+    font-weight: 400;
+    font-style: normal;
+    line-height: 1.25;
+}
+
+/* Bold/16 */
+@mixin bold-16 {
+    font-family: $base-font-family;
+    font-size: 16px;
+    font-weight: 700;
+    font-style: normal;
+    line-height: 1.25;
+}
+
+/* Bold/32 */
+@mixin bold-32 {
+    font-family: $base-font-family;
+    font-size: 32px;
+    font-weight: 700;
+    font-style: normal;
+    line-height: 1.25;
+}

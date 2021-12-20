@@ -1,10 +1,13 @@
 {
     "env": {
         "browser": true,
-        "es6": true,
-        "es2017": true
+        "es6": true
     },
     "root": true,
+    "parserOptions": {
+        "project": "jsconfig.json",
+        "jsconfigRootDir": "."
+    },
     "plugins": ["prettier", "import"],
     "rules": {
         "prettier/prettier": [
@@ -15,6 +18,17 @@
             }
         ],
         "semi": "off",
+        "@typescript-eslint/semi": ["warn"],
+        "@typescript-eslint/no-empty-interface": [
+            "error",
+            {
+                "allowSingleExtends": true
+            }
+        ],
+        "@typescript-eslint/no-empty-function": [
+            "error",
+            { "allow": ["arrowFunctions"] }
+        ],
         "import/no-absolute-path": "error",
         "import/no-useless-path-segments": ["warn", { "noUselessIndex": true }],
         "import/no-deprecated": "warn",
@@ -45,7 +59,7 @@
     "settings": {
         "import/resolver": {
             "node": {
-                "paths": ["react-project-kitchen-frontend>"]
+                "paths": ["react-project-kitchen-frontend"]
             }
         }
     }
