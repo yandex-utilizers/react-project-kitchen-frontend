@@ -1,6 +1,4 @@
-$base-font-family: "Lucida Sans Unicode", "Arial", sans-serif;
-$accent-font-family: "Neue Machina", "Arial", sans-serif;
-
+$base-font-family: "Neue Machina", monospace;
 
 /* Regular/14 */
 @mixin regular-14 {
@@ -47,20 +45,11 @@ $accent-font-family: "Neue Machina", "Arial", sans-serif;
     line-height: 1.25;
 }
 
-@mixin text-default {
+/* Regular/36 */
+@mixin regular-36 {
     font-family: $base-font-family;
-    font-size: 16px;
-    line-height: 24px;
-}
-
-@mixin heading-h1 {
-    font-family: $accent-font-family;
-    font-size: 64px;
-    line-height: 64px;
-}
-
-@mixin text-headline {
-    font-family: $accent-font-family;
-    font-size: 24px;
-    line-height: 28px;
+    font-size: 36px;
+    font-weight: 400;
+    font-style: normal;
+    line-height: 1.25;
 }

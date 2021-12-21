@@ -1,0 +1,66 @@
+@import "styles";
+
+.Login {
+    margin-top: 48px;
+}
+
+.Container {
+    /*ширина контейнера чистая 540px*/
+    margin: 0 auto;
+    padding: 0 15px;
+    max-width: 570px;
+    width: 100%;
+}
+
+.Title {
+    @include regular-36;
+    text-align: center;
+    margin-bottom: 40px;
+    color: $color-text;
+}
+
+.TextCenter {
+    @include regular-16;
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.Link {
+    position: relative;
+    color: $color-primary;
+    text-decoration: none;
+    transition: all 0.15s;
+
+    &::before {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        height: 1px;
+        width: 100%;
+        background-color: $color-primary;
+    }
+
+    &:hover {
+        color: $color-text;
+        text-decoration: none;
+
+        &::before {
+            background-color: $color-text;
+        }
+    }
+}
+
+.FormGroup {
+    margin-bottom: 12px;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+
+.Control {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 28px;
+}
