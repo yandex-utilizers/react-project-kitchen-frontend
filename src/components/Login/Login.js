@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import classnames from "classnames";
 import agent from "agent";
 import { LOGIN, LOGIN_PAGE_UNLOADED } from "constants/actionTypes";
+import { ROUTES } from "routes";
 import { Button, Input, Spinner } from "ui-kit";
 import classes from "./Login.module.scss";
 
@@ -19,7 +20,7 @@ const Login = ({ className }) => {
 
     useEffect(() => {
         if (common.token) {
-            history.push("/");
+            history.push(ROUTES.HOME);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [common]);
@@ -80,7 +81,11 @@ const Login = ({ className }) => {
                             />
                         </fieldset>
                         <div className={classes.Control}>
-                            <Button type="submit" isDisabled={auth.inProgress}>
+                            <Button
+                                className={classes.Button}
+                                type="submit"
+                                isDisabled={auth.inProgress}
+                            >
                                 Войти
                             </Button>
                         </div>
