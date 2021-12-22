@@ -4,6 +4,6 @@
 }
 
 .Item {
-    @include regular-16;
-    color: $color-error;
+    @include text-default;
+    color: $color-alert;
 }

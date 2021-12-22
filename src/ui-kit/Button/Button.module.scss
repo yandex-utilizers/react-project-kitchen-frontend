@@ -2,32 +2,32 @@
 
 .Button {
     $this: &;
+    @include text-default;
     padding: 8px 16px;
     height: 40px;
     width: max-content;
-    color: $color-white;
-    background-color: $color-primary;
-    border: 1px solid $color-primary;
+    color: $color-bg-primary;
+    background-color: $color-accent;
+    border: 1px solid $color-accent;
     border-radius: 8px;
     outline: transparent;
     transition: all 0.15s;
     cursor: pointer;
 
     &:hover {
-        box-shadow: 0 4px 16px rgba(0, 0, 255, 0.12),
-            0 2px 8px rgba(0, 0, 255, 0.24), 0 0 4px rgba(0, 0, 255, 0.48);
+        box-shadow: $shadow-hover;
     }
 
     &#{$this}__disabled {
         color: $color-disabled;
-        background-color: $color-bg-disabled;
-        border-color: $color-bg-disabled;
+        background-color: $color-devider;
+        border-color: $color-devider;
         cursor: default;
 
         &:hover {
             color: $color-disabled;
-            background-color: $color-bg-disabled;
-            border-color: $color-bg-disabled;
+            background-color: $color-devider;
+            border-color: $color-devider;
             box-shadow: none;
         }
     }
