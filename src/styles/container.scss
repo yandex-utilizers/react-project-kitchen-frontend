@@ -1,26 +1,26 @@
 .container {
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 15px;
-  padding-right: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 15px;
+    padding-right: 15px;
 }
 @media (min-width: 544px) {
-  .container {
-      max-width: 576px;
-  }
+    .container {
+        max-width: 576px;
+    }
 }
 @media (min-width: 768px) {
-  .container {
-      max-width: 720px;
-  }
+    .container {
+        max-width: 720px;
+    }
 }
 @media (min-width: 992px) {
-  .container {
-      max-width: 940px;
-  }
+    .container {
+        max-width: 940px;
+    }
 }
 @media (min-width: 1200px) {
-  .container {
-      max-width: 1140px;
-  }
+    .container {
+        max-width: 1140px;
+    }
 }
