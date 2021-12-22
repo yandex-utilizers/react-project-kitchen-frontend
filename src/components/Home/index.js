@@ -1,6 +1,6 @@
 import Banner from "./Banner";
 import MainView from "./MainView";
-import Intro from './Intro';
+import Intro from "./Intro";
 import React from "react";
 import Tags from "./Tags";
 import agent from "../../agent";
@@ -58,20 +58,19 @@ class Home extends React.Component {
                     <ToDelete />
 
                     <div className="row">
-                    <MainView />
+                        <MainView />
 
-                    <div className="col-md-3">
-                    <div className="sidebar">
+                        <div className="col-md-3">
+                            <div className="sidebar">
+                                <p>Popular Tags</p>
 
-                        <p>Popular Tags</p>
-
-                        <Tags
-                        tags={this.props.tags}
-                        onClickTag={this.props.onClickTag} />
-
+                                <Tags
+                                    tags={this.props.tags}
+                                    onClickTag={this.props.onClickTag}
+                                />
+                            </div>
+                        </div>
                     </div>
-                    </div>
-                </div>
                 </div>
             </div>
         );

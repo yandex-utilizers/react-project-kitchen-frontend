@@ -1,14 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import logoImg from '../../images/logo.svg';
-import {Logo} from '../Logo/Logo';
-import HomeIcon from '../icons/HomeIcon';
-import LoginIcon from '../icons/LoginIcon';
-import PostIcon from '../icons/PostIcon';
-import SettingsIcon from '../icons/SettingsIcon';
-import UserIcon from '../icons/UserIcon';
+import logoImg from "../../images/logo.svg";
+import { Logo } from "../Logo/Logo";
+import HomeIcon from "../icons/HomeIcon";
+import LoginIcon from "../icons/LoginIcon";
+import PostIcon from "../icons/PostIcon";
+import SettingsIcon from "../icons/SettingsIcon";
+import UserIcon from "../icons/UserIcon";
 import cn from "classnames";
-import classes from './Header.module.scss';
+import classes from "./Header.module.scss";
 
 const LoggedOutView = props => {
     if (!props.currentUser) {
@@ -62,15 +62,17 @@ const LoggedInView = props => {
                     </li>
 
                     <li className={cn(classes.navItem)}>
-                        <Link to={`/@${props.currentUser.username}`} className={cn(classes.navLink)}>
+                        <Link
+                            to={`/@${props.currentUser.username}`}
+                            className={cn(classes.navLink)}
+                        >
                             <UserIcon />
                             {props.currentUser.username}
                         </Link>
                     </li>
-
                 </ul>
             </nav>
-    
+
             // <ul className="nav navbar-nav pull-xs-right">
             //     <li className="nav-item">
             //         <Link to="/editor" className="nav-link">
@@ -113,6 +115,6 @@ const Header = props => {
             </div>
         </header>
     );
-}
+};
 
 export { Header };

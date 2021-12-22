@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 const Logo = ({ width, height }) => {
     return (
@@ -21,4 +21,4 @@ const Logo = ({ width, height }) => {
     );
 };
 
-export {Logo};
+export { Logo };
