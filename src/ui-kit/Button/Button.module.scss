@@ -3,6 +3,9 @@
 .Button {
     $this: &;
     @include text-default;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     padding: 8px 16px;
     height: 40px;
     width: max-content;
@@ -13,6 +16,16 @@
     outline: transparent;
     transition: all 0.15s;
     cursor: pointer;
+
+    &__Primary {
+        color: $color-bg-primary;
+    }
+
+    &__Danger {
+        color: $color-alert;
+        background-color: transparent;
+        border: 1px solid $color-alert;
+    }
 
     &:hover {
         box-shadow: $shadow-hover;
@@ -31,4 +44,8 @@
             box-shadow: none;
         }
     }
+}
+
+.Text {
+    margin-left: 13px;
 }
