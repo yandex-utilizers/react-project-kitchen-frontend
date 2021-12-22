@@ -1,66 +1,50 @@
 $base-font-family: "Lucida Sans Unicode", "Arial", sans-serif;
 $accent-font-family: "Neue Machina", "Arial", sans-serif;
 
-
-/* Regular/14 */
-@mixin regular-14 {
+@mixin text-caption {
     font-family: $base-font-family;
-    font-size: 14px;
+    font-style: normal;
+    font-size: 12px;
+    line-height: 16px;
     font-weight: 400;
-    font-style: normal;
-    line-height: 1.25;
-}
-
-/* Bold/14 */
-@mixin bold-14 {
-    font-family: $base-font-family;
-    font-size: 14px;
-    font-weight: 700;
-    font-style: normal;
-    line-height: 1.25;
-}
-
-/* Regular/16 */
-@mixin regular-16 {
-    font-family: $base-font-family;
-    font-size: 16px;
-    font-weight: 400;
-    font-style: normal;
-    line-height: 1.25;
-}
-
-/* Bold/16 */
-@mixin bold-16 {
-    font-family: $base-font-family;
-    font-size: 16px;
-    font-weight: 700;
-    font-style: normal;
-    line-height: 1.25;
-}
-
-/* Bold/32 */
-@mixin bold-32 {
-    font-family: $base-font-family;
-    font-size: 32px;
-    font-weight: 700;
-    font-style: normal;
-    line-height: 1.25;
 }
 
 @mixin text-default {
     font-family: $base-font-family;
+    font-style: normal;
     font-size: 16px;
     line-height: 24px;
+    font-weight: 400;
 }
 
-@mixin heading-h1 {
-    font-family: $accent-font-family;
-    font-size: 64px;
-    line-height: 64px;
+@mixin text-link {
+    font-family: $base-font-family;
+    font-style: normal;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 400;
 }
 
 @mixin text-headline {
     font-family: $accent-font-family;
+    font-style: normal;
     font-size: 24px;
     line-height: 28px;
+    font-weight: 400;
+}
+
+@mixin heading-h2 {
+    font-family: $accent-font-family;
+    font-style: normal;
+    font-size: 36px;
+    line-height: 40px;
+    font-weight: 400;
+}
+
+@mixin heading-h1 {
+    font-family: $accent-font-family;
+    font-style: normal;
+    font-size: 64px;
+    line-height: 64px;
+    font-weight: 400;
 }

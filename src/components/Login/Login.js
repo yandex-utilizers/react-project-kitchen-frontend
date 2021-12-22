@@ -1,94 +1,99 @@
-import { Link } from "react-router-dom";
-import ListErrors from "../ListErrors";
-import React from "react";
-import agent from "../../agent";
-import { connect } from "react-redux";
-import {
-    UPDATE_FIELD_AUTH,
-    LOGIN,
-    LOGIN_PAGE_UNLOADED,
-} from "../../constants/actionTypes";
+import React, { useEffect, useState } from "react";
+import { Link, useHistory } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import classnames from "classnames";
+import agent from "agent";
+import { LOGIN, LOGIN_PAGE_UNLOADED } from "constants/actionTypes";
+import { ROUTES } from "routes";
+import { Button, Input, Spinner } from "ui-kit";
+import classes from "./Login.module.scss";
 
-const mapStateToProps = state => ({ ...state.auth });
+const Login = ({ className }) => {
+    const [state, setState] = useState({
+        email: "",
+        password: "",
+    });
+    const auth = useSelector(state => state.auth);
+    const common = useSelector(state => state.common);
+    const dispatch = useDispatch();
+    const history = useHistory();
 
-const mapDispatchToProps = dispatch => ({
-    onChangeEmail: value =>
-        dispatch({ type: UPDATE_FIELD_AUTH, key: "email", value }),
-    onChangePassword: value =>
-        dispatch({ type: UPDATE_FIELD_AUTH, key: "password", value }),
-    onSubmit: (email, password) =>
-        dispatch({ type: LOGIN, payload: agent.Auth.login(email, password) }),
-    onUnload: () => dispatch({ type: LOGIN_PAGE_UNLOADED }),
-});
+    useEffect(() => {
+        if (common.token) {
+            history.push(ROUTES.HOME);
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [common]);
 
-class Login extends React.Component {
-    constructor() {
-        super();
-        this.changeEmail = ev => this.props.onChangeEmail(ev.target.value);
-        this.changePassword = ev =>
-            this.props.onChangePassword(ev.target.value);
-        this.submitForm = (email, password) => ev => {
-            ev.preventDefault();
-            this.props.onSubmit(email, password);
-        };
-    }
+    useEffect(() => {
+        return () => dispatch({ type: LOGIN_PAGE_UNLOADED });
+    }, [dispatch]);
 
-    componentWillUnmount() {
-        this.props.onUnload();
-    }
+    const handleChange = event => {
+        setState({ ...state, [event.target.name]: event.target.value });
+    };
 
-    render() {
-        const email = this.props.email;
-        const password = this.props.password;
-        return (
-            <div className="auth-page">
-                <div className="container page">
-                    <div className="row">
-                        <div className="col-md-6 offset-md-3 col-xs-12">
-                            <h1 className="text-xs-center">Sign In</h1>
-                            <p className="text-xs-center">
-                                <Link to="/register">Need an account?</Link>
-                            </p>
+    const handleSubmitForm = event => {
+        event.preventDefault();
+        dispatch({
+            type: LOGIN,
+            payload: agent.Auth.login(state.email, state.password),
+        });
+    };
 
-                            <ListErrors errors={this.props.errors} />
+    if (auth.inProgress) return <Spinner />;
 
-                            <form onSubmit={this.submitForm(email, password)}>
-                                <fieldset>
-                                    <fieldset className="form-group">
-                                        <input
-                                            className="form-control form-control-lg"
-                                            type="email"
-                                            placeholder="Email"
-                                            value={email}
-                                            onChange={this.changeEmail}
-                                        />
-                                    </fieldset>
-
-                                    <fieldset className="form-group">
-                                        <input
-                                            className="form-control form-control-lg"
-                                            type="password"
-                                            placeholder="Password"
-                                            value={password}
-                                            onChange={this.changePassword}
-                                        />
-                                    </fieldset>
-
-                                    <button
-                                        className="btn btn-lg btn-primary pull-xs-right"
-                                        type="submit"
-                                        disabled={this.props.inProgress}
-                                    >
-                                        Sign in
-                                    </button>
-                                </fieldset>
-                            </form>
+    return (
+        <div className={classnames(classes.Login, className)}>
+            <div className={classes.Container}>
+                <h1 className={classes.Title}>Войти</h1>
+                <p className={classes.TextCenter}>
+                    <Link className={classes.Link} to="/register">
+                        Хотите создать аккаунт?
+                    </Link>
+                </p>
+                <form onSubmit={handleSubmitForm}>
+                    <fieldset>
+                        <fieldset className={classes.FormGroup}>
+                            <Input
+                                autoComplete="username"
+                                errors={auth.errors}
+                                id="email"
+                                label="E-mail"
+                                name="email"
+                                type="email"
+                                placeholder="E-mail"
+                                value={state.email}
+                                onChange={handleChange}
+                            />
+                        </fieldset>
+                        <fieldset className={classes.FormGroup}>
+                            <Input
+                                autoComplete="current-password"
+                                errors={auth.errors}
+                                id="password"
+                                label="Пароль"
+                                name="password"
+                                type="password"
+                                placeholder="Пароль"
+                                value={state.password}
+                                onChange={handleChange}
+                            />
+                        </fieldset>
+                        <div className={classes.Control}>
+                            <Button
+                                className={classes.Button}
+                                type="submit"
+                                isDisabled={auth.inProgress}
+                            >
+                                Войти
+                            </Button>
                         </div>
-                    </div>
-                </div>
+                    </fieldset>
+                </form>
             </div>
-        );
-    }
-}
+        </div>
+    );
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default Login;

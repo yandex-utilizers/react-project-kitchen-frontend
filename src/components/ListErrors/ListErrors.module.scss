@@ -1,0 +1,9 @@
+@import "styles";
+
+.ListErrors {
+}
+
+.Item {
+    @include text-default;
+    color: $color-alert;
+}
