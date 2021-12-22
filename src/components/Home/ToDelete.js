@@ -3,7 +3,7 @@ import React from "react";
 function ToDelete() {
     return (
         <div className="to-delete">
-            <h2 className="to-delete__title toDeleteTitle">Привет!</h2>
+            <h2 className="to-delete__title">Привет!</h2>
             <p className="to-delete__paragraph">
                 Этот компонент страницы вы можете удалить сразу. Он нужен, чтобы
                 поприветствовать вас и вдохновить на коллективную работу.

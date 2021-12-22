@@ -1,0 +1,32 @@
+@import "styles";
+
+.Tabs {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    box-shadow: $shadow-underline-inactive;
+}
+
+.Tab {
+    padding: 16px 24px;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: all 0.15s;
+
+    &__selected {
+        border-bottom: 1px solid $color-accent;
+    }
+
+    &:hover {
+        background-color: $color-bg-secondary;
+    }
+
+    &Label {
+        @include text-default;
+        color: $color-secondary;
+
+        &__selected {
+            color: $color-primary;
+        }
+    }
+}
