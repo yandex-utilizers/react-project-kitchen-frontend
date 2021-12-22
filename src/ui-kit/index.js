@@ -3,5 +3,6 @@ import Button from "./Button";
 import Icon from "./Icon";
 import Input from "./Input";
 import Spinner from "./Spinner";
+import Tag from "./Tag";
 
-export { Avatar, Button, Icon, Input, Spinner };
+export { Avatar, Button, Icon, Input, Spinner, Tag };
