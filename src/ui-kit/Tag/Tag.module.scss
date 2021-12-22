@@ -1,0 +1,21 @@
+@import "styles";
+
+.Tag {
+    @include text-caption;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px 8px;
+    width: max-content;
+    white-space: nowrap;
+    color: $color-primary;
+    background-color: transparent;
+    border: 1px solid $color-primary;
+    border-radius: 8px;
+
+    &__active {
+        color: $color-bg-primary;
+        background-color: $color-accent;
+        border: 1px solid $color-accent;
+    }
+}
