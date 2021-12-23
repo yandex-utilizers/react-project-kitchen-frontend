@@ -15,7 +15,6 @@ export const Register = ({ className }) => {
         username: "",
     });
     const auth = useSelector(state => state.auth);
-    console.log("auth ", auth);
     const common = useSelector(state => state.common);
     const dispatch = useDispatch();
     const history = useHistory();
@@ -72,7 +71,6 @@ export const Register = ({ className }) => {
                                 onChange={handleChange}
                             />
                         </fieldset>
-
                         <fieldset className="form-group">
                             <Input
                                 autoComplete="email"
@@ -86,7 +84,6 @@ export const Register = ({ className }) => {
                                 onChange={handleChange}
                             />
                         </fieldset>
-
                         <fieldset className="form-group">
                             <Input
                                 autoComplete="current-password"

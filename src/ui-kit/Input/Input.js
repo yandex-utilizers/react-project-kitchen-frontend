@@ -18,6 +18,7 @@ export const Input = forwardRef(
             value,
             isRequired,
             onChange,
+            onKeyUp,
             ...rest
         },
         ref
@@ -61,6 +62,7 @@ export const Input = forwardRef(
                         type={handleType(type)}
                         value={value}
                         onChange={onChange}
+                        onKeyUp={onKeyUp}
                         {...rest}
                     />
                     {type === PASSWORD && !errors && (

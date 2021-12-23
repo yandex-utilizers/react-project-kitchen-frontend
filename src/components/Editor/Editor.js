@@ -1,183 +1,197 @@
-import ListErrors from "../ListErrors";
-import React from "react";
-import agent from "../../agent";
-import { connect } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useHistory, useLocation, useRouteMatch } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import classnames from "classnames";
+import isEmpty from "lodash/isEmpty";
+import agent from "agent";
 import {
     ADD_TAG,
     EDITOR_PAGE_LOADED,
     REMOVE_TAG,
     ARTICLE_SUBMITTED,
     EDITOR_PAGE_UNLOADED,
-    UPDATE_FIELD_EDITOR,
-} from "../../constants/actionTypes";
+} from "constants/actionTypes";
+import { ROUTES } from "routes";
+import { Button, Input, TextArea } from "ui-kit";
+import { handleRemoveAllSpaces } from "utils/string";
+import classes from "./Editor.module.scss";
 
-const mapStateToProps = state => ({
-    ...state.editor,
-});
+export const Editor = ({ className }) => {
+    const [isCreatePage, setIsCreatePage] = useState(false);
+    const [state, setState] = useState({
+        articleSlug: "",
+        body: "",
+        description: "",
+        tagInput: "",
+        tagList: [],
+        title: "",
+    });
+    const editor = useSelector(state => state.editor);
+    const dispatch = useDispatch();
+    const history = useHistory();
+    const location = useLocation();
+    const match = useRouteMatch();
 
-const mapDispatchToProps = dispatch => ({
-    onAddTag: () => dispatch({ type: ADD_TAG }),
-    onLoad: payload => dispatch({ type: EDITOR_PAGE_LOADED, payload }),
-    onRemoveTag: tag => dispatch({ type: REMOVE_TAG, tag }),
-    onSubmit: payload => dispatch({ type: ARTICLE_SUBMITTED, payload }),
-    onUnload: payload => dispatch({ type: EDITOR_PAGE_UNLOADED }),
-    onUpdateField: (key, value) =>
-        dispatch({ type: UPDATE_FIELD_EDITOR, key, value }),
-});
+    const handleChange = event => {
+        setState({ ...state, [event.target.name]: event.target.value });
+    };
 
-class Editor extends React.Component {
-    constructor() {
-        super();
-
-        const updateFieldEvent = key => ev =>
-            this.props.onUpdateField(key, ev.target.value);
-        this.changeTitle = updateFieldEvent("title");
-        this.changeDescription = updateFieldEvent("description");
-        this.changeBody = updateFieldEvent("body");
-        this.changeTagInput = updateFieldEvent("tagInput");
-
-        this.watchForEnter = ev => {
-            if (ev.keyCode === 13) {
-                ev.preventDefault();
-                this.props.onAddTag();
-            }
-        };
-
-        this.removeTagHandler = tag => () => {
-            this.props.onRemoveTag(tag);
-        };
-
-        this.submitForm = ev => {
-            ev.preventDefault();
-            const article = {
-                title: this.props.title,
-                description: this.props.description,
-                body: this.props.body,
-                tagList: this.props.tagList,
-            };
-
-            const slug = { slug: this.props.articleSlug };
-            const promise = this.props.articleSlug
-                ? agent.Articles.update(Object.assign(article, slug))
-                : agent.Articles.create(article);
-
-            this.props.onSubmit(promise);
-        };
-    }
-
-    componentWillReceiveProps(nextProps) {
-        if (this.props.match.params.slug !== nextProps.match.params.slug) {
-            if (nextProps.match.params.slug) {
-                this.props.onUnload();
-                return this.props.onLoad(
-                    agent.Articles.get(this.props.match.params.slug)
-                );
-            }
-            this.props.onLoad(null);
+    const handleWatchForEnter = event => {
+        if (event.keyCode === 13) {
+            event.preventDefault();
+            dispatch({ type: ADD_TAG });
         }
-    }
+    };
 
-    componentWillMount() {
-        if (this.props.match.params.slug) {
-            return this.props.onLoad(
-                agent.Articles.get(this.props.match.params.slug)
-            );
+    const handleSubmitForm = event => {
+        event.preventDefault();
+        const tags = handleRemoveAllSpaces(state.tagInput).split(",");
+        const article = {
+            title: state.title,
+            description: state.description,
+            body: state.body,
+            tagList: tags,
+        };
+        const slug = { slug: state.articleSlug };
+        const promise = state.articleSlug
+            ? agent.Articles.update(Object.assign(article, slug))
+            : agent.Articles.create(article);
+        dispatch({
+            type: ARTICLE_SUBMITTED,
+            payload: promise,
+        });
+        if (isCreatePage) {
+            history.push(ROUTES.HOME);
+        } else {
+            history.push(`${ROUTES.ARTICLE}/${state.articleSlug}`);
         }
-        this.props.onLoad(null);
-    }
+    };
 
-    componentWillUnmount() {
-        this.props.onUnload();
-    }
+    useEffect(() => {
+        if (location.pathname === ROUTES.EDITOR) {
+            setIsCreatePage(true);
+            dispatch({ type: EDITOR_PAGE_LOADED, payload: null });
+        } else {
+            setIsCreatePage(false);
+            const payload = agent.Articles.get(match.params.slug);
+            dispatch({ type: EDITOR_PAGE_LOADED, payload: payload });
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
-    render() {
-        return (
-            <div className="editor-page">
-                <div className="container page">
-                    <div className="row">
-                        <div className="col-md-10 offset-md-1 col-xs-12">
-                            <ListErrors errors={this.props.errors}></ListErrors>
+    useEffect(() => {
+        if (!isCreatePage && !isEmpty(editor)) {
+            const tags = editor.tagList ? editor.tagList.join(",") : "";
+            setState(prevState => ({
+                ...prevState,
+                articleSlug: editor.articleSlug,
+                body: editor.body,
+                description: editor.description,
+                tagInput: tags,
+                title: editor.title,
+            }));
+        }
+    }, [isCreatePage, editor]);
 
-                            <form>
-                                <fieldset>
-                                    <fieldset className="form-group">
-                                        <input
-                                            className="form-control form-control-lg"
-                                            type="text"
-                                            placeholder="Article Title"
-                                            value={this.props.title}
-                                            onChange={this.changeTitle}
-                                        />
-                                    </fieldset>
+    useEffect(() => {
+        return () => dispatch({ type: EDITOR_PAGE_UNLOADED });
+    }, [dispatch]);
 
-                                    <fieldset className="form-group">
-                                        <input
-                                            className="form-control"
-                                            type="text"
-                                            placeholder="What's this article about?"
-                                            value={this.props.description}
-                                            onChange={this.changeDescription}
-                                        />
-                                    </fieldset>
+    const handleRemoveTag = tag => {
+        dispatch({ type: REMOVE_TAG, tag });
+    };
 
-                                    <fieldset className="form-group">
-                                        <textarea
-                                            className="form-control"
-                                            rows="8"
-                                            placeholder="Write your article (in markdown)"
-                                            value={this.props.body}
-                                            onChange={this.changeBody}
-                                        ></textarea>
-                                    </fieldset>
+    const validate = state => {
+        if (!state.title || !state.description) {
+            return true;
+        }
+    };
 
-                                    <fieldset className="form-group">
-                                        <input
-                                            className="form-control"
-                                            type="text"
-                                            placeholder="Enter tags"
-                                            value={this.props.tagInput}
-                                            onChange={this.changeTagInput}
-                                            onKeyUp={this.watchForEnter}
-                                        />
-
-                                        <div className="tag-list">
-                                            {(this.props.tagList || []).map(
-                                                tag => {
-                                                    return (
-                                                        <span
-                                                            className="tag-default tag-pill"
-                                                            key={tag}
-                                                        >
-                                                            <i
-                                                                className="ion-close-round"
-                                                                onClick={this.removeTagHandler(
-                                                                    tag
-                                                                )}
-                                                            ></i>
-                                                            {tag}
-                                                        </span>
-                                                    );
-                                                }
-                                            )}
-                                        </div>
-                                    </fieldset>
-
-                                    <button
-                                        className="btn btn-lg pull-xs-right btn-primary"
-                                        type="button"
-                                        disabled={this.props.inProgress}
-                                        onClick={this.submitForm}
-                                    >
-                                        Publish Article
-                                    </button>
-                                </fieldset>
-                            </form>
+    return (
+        <div className={classnames(classes.Editor, className)}>
+            <div className={classes.Container}>
+                <h1 className={classes.Title}>
+                    {isCreatePage ? "Новая запись" : "Редактирование записи"}
+                </h1>
+                <form onSubmit={handleSubmitForm}>
+                    <fieldset>
+                        <fieldset className={classes.FormGroup}>
+                            <Input
+                                errors={editor.errors}
+                                id="title"
+                                label="Заголовок"
+                                name="title"
+                                type="text"
+                                placeholder="Название статьи"
+                                value={state.title}
+                                onChange={handleChange}
+                            />
+                        </fieldset>
+                        <fieldset className={classes.FormGroup}>
+                            <Input
+                                errors={editor.errors}
+                                id="description"
+                                label="Описание"
+                                name="description"
+                                type="text"
+                                placeholder="О чем статья"
+                                value={state.description}
+                                onChange={handleChange}
+                            />
+                        </fieldset>
+                        <fieldset className={classes.FormGroup}>
+                            <TextArea
+                                label="Содержание"
+                                name="body"
+                                placeholder="Текст статьи"
+                                rows="8"
+                                type="text"
+                                value={state.body}
+                                onChange={handleChange}
+                            />
+                        </fieldset>
+                        <fieldset className={classes.FormGroup}>
+                            <Input
+                                errors={editor.errors}
+                                id="tagInput"
+                                label="Тэги"
+                                name="tagInput"
+                                type="text"
+                                placeholder="Теги (через запятую)"
+                                value={state.tagInput}
+                                onChange={handleChange}
+                                onKeyUp={handleWatchForEnter}
+                            />
+                            <div className="tag-list">
+                                {(state.tagList && state.tagList).map(tag => {
+                                    return (
+                                        <span
+                                            className="tag-default tag-pill"
+                                            key={tag}
+                                        >
+                                            <i
+                                                className="ion-close-round"
+                                                onClick={handleRemoveTag(tag)}
+                                            />
+                                            {tag}
+                                        </span>
+                                    );
+                                })}
+                            </div>
+                        </fieldset>
+                        <div className={classes.Control}>
+                            <Button
+                                type="submit"
+                                isDisabled={
+                                    editor.inProgress || validate(state)
+                                }
+                            >
+                                {isCreatePage ? "Опубликовать" : "Сохранить"}
+                            </Button>
                         </div>
-                    </div>
-                </div>
+                    </fieldset>
+                </form>
             </div>
-        );
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Editor);
+        </div>
+    );
+};

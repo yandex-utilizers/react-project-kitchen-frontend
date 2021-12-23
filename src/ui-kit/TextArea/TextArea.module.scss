@@ -1,0 +1,48 @@
+@import "styles";
+
+.TextArea {
+    $this: &;
+    @include text-default;
+    display: flex;
+    align-items: center;
+    padding: 8px 16px;
+    width: 100%;
+    color: $color-primary;
+    background-color: $color-input;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    box-shadow: $shadow-input;
+    outline: transparent;
+    transition: all 0.15s ease;
+
+    &::placeholder {
+        @include text-default;
+        color: $color-secondary;
+    }
+
+    &:hover {
+        background-color: $color-input;
+    }
+
+    &#{$this}__error {
+        border: 1px solid $color-alert;
+
+        &:hover {
+            border: 1px solid $color-alert;
+        }
+    }
+}
+
+.Label {
+    @include text-default;
+    margin-bottom: 4px;
+    margin-left: 16px;
+    color: $color-primary;
+}
+
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+textarea:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px $color-input inset !important;
+}
