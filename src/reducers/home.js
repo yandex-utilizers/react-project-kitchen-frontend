@@ -1,6 +1,10 @@
 import { HOME_PAGE_LOADED, HOME_PAGE_UNLOADED } from "../constants/actionTypes";
 
-export default (state = {}, action) => {
+const initialState = {
+    tags: ['test1', 'test2'],
+};
+
+export default (state = initialState, action) => {
     switch (action.type) {
         case HOME_PAGE_LOADED:
             return {

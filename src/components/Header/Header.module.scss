@@ -17,15 +17,10 @@
     display: flex;
 }
 
-.navBar {
-}
-
 .navList {
     display: flex;
 }
 
-.navItem {
-}
 .navLink {
     padding: 8px 16px;
     display: flex;
@@ -33,13 +28,14 @@
     cursor: pointer;
     transition: color 0.3s ease;
 
-    svg {
-        margin-right: 11px;
-    }
-
+    
     &:hover,
     &:focus {
         color: $color-accent;
         text-decoration: none;
     }
+}
+
+.LinkIcon {
+    margin-right: 11px;
 }

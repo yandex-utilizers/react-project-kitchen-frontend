@@ -1,0 +1,66 @@
+@import "styles";
+
+.ArticlePreview {
+  display: flex;
+  padding-top: 32px;
+  padding-bottom: 32px;
+  border-bottom: 1px solid $color-devider;
+  width: 100%;
+}
+
+.Image {
+  width: 160px;
+  margin-right: 16px;
+  background-color: $color-input;
+  border-radius: 5px;
+}
+
+.PreviewContent {
+  width: calc(100% - 176px);
+
+}
+
+.Avatar {
+  margin-right: 8px;
+}
+
+.Header {
+  display: flex;
+  margin-bottom: 16px;
+}
+
+.LikeButton {
+  margin-left: auto;
+  background-color: transparent;
+  border: none;
+  display: flex;
+  align-items: center;
+
+  span {
+    margin-right: 10px;
+  }
+}
+
+.Info {
+  display: flex;
+  flex-direction: column;
+}
+
+.Heading {
+  @include text-headline;
+  margin-bottom: 8px;
+}
+
+.Text {
+  color: $color-secondary;
+  margin-bottom: 16px;
+}
+
+.Link {
+  text-decoration: underline;
+  color: $color-accent;
+}
+
+.Footer {
+  display: flex;
+}

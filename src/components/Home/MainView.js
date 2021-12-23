@@ -1,8 +1,9 @@
 import React from "react";
 import agent from "../../agent";
-import { connect } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { CHANGE_TAB } from "../../constants/actionTypes";
 import { ArticleList } from "../index";
+import { store } from "store";
 
 const YourFeedTab = props => {
     if (props.token) {
@@ -64,46 +65,42 @@ const TagFilterTab = props => {
     );
 };
 
-const mapStateToProps = state => ({
-    ...state.articleList,
-    tags: state.home.tags,
-    token: state.common.token,
-});
-
-const mapDispatchToProps = dispatch => ({
-    onTabClick: (tab, pager, payload) =>
-        dispatch({ type: CHANGE_TAB, tab, pager, payload }),
-});
-
 const MainView = props => {
+    const articleListProps = useSelector(store => store.articleList);
+    const token = useSelector(store => store.common.token);
+    const tags = useSelector(store => store.home.tags);
+
+    const dispatch = useDispatch();
+    const onTabClick = (tab, pager, payload) => dispatch({ type: CHANGE_TAB, tab, pager, payload });
+
     return (
         <div className="col-md-9">
             <div className="feed-toggle">
                 <ul className="nav nav-pills outline-active">
                     <YourFeedTab
-                        token={props.token}
-                        tab={props.tab}
-                        onTabClick={props.onTabClick}
+                        token={token}
+                        tab={articleListProps.tab}
+                        onTabClick={onTabClick}
                     />
 
                     <GlobalFeedTab
-                        tab={props.tab}
-                        onTabClick={props.onTabClick}
+                        tab={articleListProps.tab}
+                        onTabClick={onTabClick}
                     />
 
-                    <TagFilterTab tag={props.tag} />
+                    <TagFilterTab tag={articleListProps.tag} />
                 </ul>
             </div>
 
             <ArticleList
                 pager={props.pager}
-                articles={props.articles}
+                articles={articleListProps.articles}
                 loading={props.loading}
-                articlesCount={props.articlesCount}
-                currentPage={props.currentPage}
+                articlesCount={articleListProps.articlesCount}
+                currentPage={articleListProps.currentPage}
             />
         </div>
     );
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(MainView);
+export default MainView;

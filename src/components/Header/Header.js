@@ -2,13 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 import logoImg from "../../images/logo.svg";
 import { Logo } from "../Logo/Logo";
-import HomeIcon from "../icons/HomeIcon";
-import LoginIcon from "../icons/LoginIcon";
-import PostIcon from "../icons/PostIcon";
-import SettingsIcon from "../icons/SettingsIcon";
-import UserIcon from "../icons/UserIcon";
 import cn from "classnames";
 import classes from "./Header.module.scss";
+import Icon from '../../ui-kit/Icon';
+import Avatar from '../../ui-kit/Avatar';
 
 const LoggedOutView = props => {
     if (!props.currentUser) {
@@ -17,14 +14,14 @@ const LoggedOutView = props => {
                 <ul className={cn(classes.navList)}>
                     <li className={cn(classes.navItem)}>
                         <Link to="/" className={cn(classes.navLink)}>
-                            <HomeIcon />
+                            <Icon className={classes.LinkIcon} type="Home"/>
                             Главная
                         </Link>
                     </li>
 
                     <li className={cn(classes.navItem)}>
                         <Link to="/login" className={cn(classes.navLink)}>
-                            <LoginIcon />
+                            <Icon className={classes.LinkIcon} type="Login" />
                             Войти
                         </Link>
                     </li>
@@ -42,21 +39,21 @@ const LoggedInView = props => {
                 <ul className={cn(classes.navList)}>
                     <li className={cn(classes.navItem)}>
                         <Link to="/" className={cn(classes.navLink)}>
-                            <HomeIcon />
+                            <Icon className={classes.LinkIcon} type="Home" />
                             Главная
                         </Link>
                     </li>
 
                     <li className={cn(classes.navItem)}>
                         <Link to="/editor" className={cn(classes.navLink)}>
-                            <PostIcon />
+                            <Icon className={classes.LinkIcon} type="Edit" />
                             Новая запись
                         </Link>
                     </li>
 
                     <li className={cn(classes.navItem)}>
                         <Link to="/settings" className={cn(classes.navLink)}>
-                            <SettingsIcon />
+                            <Icon className={classes.LinkIcon} type="Settings" />
                             Настройки
                         </Link>
                     </li>
@@ -66,7 +63,8 @@ const LoggedInView = props => {
                             to={`/@${props.currentUser.username}`}
                             className={cn(classes.navLink)}
                         >
-                            <UserIcon />
+                            {/* <Avatar size={24}/> */}
+                            <Icon className={classes.LinkIcon} type="User" size={24} />
                             {props.currentUser.username}
                         </Link>
                     </li>

@@ -1,80 +1,65 @@
-import Banner from "./Banner";
 import MainView from "./MainView";
 import Intro from "./Intro";
-import React from "react";
+import React, {useEffect} from "react";
 import Tags from "./Tags";
 import agent from "../../agent";
-import { connect } from "react-redux";
+import { connect, useSelector, useDispatch } from "react-redux";
 import {
     HOME_PAGE_LOADED,
     HOME_PAGE_UNLOADED,
     APPLY_TAG_FILTER,
 } from "../../constants/actionTypes";
 
-// YOU WILL DELETE NEXT LINE SOON
-import ToDelete from "./ToDelete";
-
 const Promise = global.Promise;
 
-const mapStateToProps = state => ({
-    ...state.home,
-    appName: state.common.appName,
-    token: state.common.token,
-});
+const Home = (props) => {
+    const dispatch = useDispatch();
+    const appName = useSelector(store => store.common.appName);
+    const token = useSelector(store => store.common.token);
+    const tags = useSelector(store => store.home.tags);
 
-const mapDispatchToProps = dispatch => ({
-    onClickTag: (tag, pager, payload) =>
-        dispatch({ type: APPLY_TAG_FILTER, tag, pager, payload }),
-    onLoad: (tab, pager, payload) =>
-        dispatch({ type: HOME_PAGE_LOADED, tab, pager, payload }),
-    onUnload: () => dispatch({ type: HOME_PAGE_UNLOADED }),
-});
+    const onClickTag = (tag, pager, payload) => dispatch({ type: APPLY_TAG_FILTER, tag, pager, payload });
+    const onLoad = (tab, pager, payload) => dispatch({ type: HOME_PAGE_LOADED, tab, pager, payload });
+    const onUnload = () => dispatch({ type: HOME_PAGE_UNLOADED });
 
-class Home extends React.Component {
-    componentWillMount() {
-        const tab = this.props.token ? "feed" : "all";
-        const articlesPromise = this.props.token
+    useEffect(() => {
+        const tab = token ? "feed" : "all";
+        const articlesPromise = token
             ? agent.Articles.feed
             : agent.Articles.all;
 
-        this.props.onLoad(
+        onLoad(
             tab,
             articlesPromise,
             Promise.all([agent.Tags.getAll(), articlesPromise()])
         );
-    }
+    return () => {
+            onUnload();
+        };
+    }, [token]);
 
-    componentWillUnmount() {
-        this.props.onUnload();
-    }
+    return (
+        <div className="home-page">
+            {/* <Banner token={this.props.token} appName={this.props.appName} /> */}
+            <Intro />
+            <div className="container page">
+                <div className="row">
+                    <MainView />
 
-    render() {
-        return (
-            <div className="home-page">
-                <Banner token={this.props.token} appName={this.props.appName} />
-                <Intro />
-                <div className="container page">
-                    {/* THIS COMPONENT WILL BE DELETED THIS IS WELCOME */}
-                    <ToDelete />
+                    <div className="col-md-3">
+                        <div className="sidebar">
+                            <p>Popular Tags</p>
 
-                    <div className="row">
-                        <MainView />
-
-                        <div className="col-md-3">
-                            <div className="sidebar">
-                                <p>Popular Tags</p>
-
-                                <Tags
-                                    tags={this.props.tags}
-                                    onClickTag={this.props.onClickTag}
-                                />
-                            </div>
+                            <Tags
+                                tags={tags}
+                                onClickTag={onClickTag}
+                            />
                         </div>
                     </div>
                 </div>
             </div>
-        );
-    }
+        </div>
+    );
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default Home;

@@ -9,13 +9,11 @@ export const Avatar = ({
     backgroundColor = "#E9E9ED",
     color = "#0A0A0B",
     imageAlt,
-    size = 48,
+    size = 24,
     user,
 }) => {
-    const sizeBox = `${size - 4}px`;
-    const sizeInner = `${size - 8}px`;
-    const sizeWrapper = `${size}px`;
-    const sizeIcon = size * 0.6;
+    const sizeInner = `${size}px`;
+    const sizeIcon = size * 0.67;
 
     const avatarRef = useRef(null);
 
@@ -28,11 +26,11 @@ export const Avatar = ({
             avatarRef.current.style.setProperty("--avatar-color", color);
             avatarRef.current.style.setProperty(
                 "--avatar-height",
-                setAtToStringAndPx(size - 8)
+                setAtToStringAndPx(size)
             );
             avatarRef.current.style.setProperty(
                 "--avatar-width",
-                setAtToStringAndPx(size - 8)
+                setAtToStringAndPx(size)
             );
             if (!user) {
                 avatarRef.current.style.setProperty(
@@ -47,10 +45,6 @@ export const Avatar = ({
         <div className={classnames(classes.Avatar, className)} ref={avatarRef}>
             <div
                 className={classnames(classes.Inner)}
-                style={{
-                    width: sizeInner,
-                    height: sizeInner,
-                }}
             >
                 {user ? (
                     <img
@@ -63,15 +57,6 @@ export const Avatar = ({
                 ) : (
                     <Icon size={sizeIcon} type="UserAvatar" />
                 )}
-            </div>
-            <div
-                className={classes.Border}
-                style={{ width: sizeWrapper, height: sizeWrapper }}
-            >
-                <div
-                    className={classes.BorderBox}
-                    style={{ width: sizeBox, height: sizeBox }}
-                />
             </div>
         </div>
     );
