@@ -25,7 +25,7 @@ const YourFeedTab = props => {
                     }
                     onClick={clickHandler}
                 >
-                    Your Feed
+                    Ваша лента
                 </a>
             </li>
         );
@@ -45,7 +45,7 @@ const GlobalFeedTab = props => {
                 className={props.tab === "all" ? "nav-link active" : "nav-link"}
                 onClick={clickHandler}
             >
-                Global Feed
+                Лента
             </a>
         </li>
     );

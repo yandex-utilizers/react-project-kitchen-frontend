@@ -59,8 +59,17 @@
 .Link {
   text-decoration: underline;
   color: $color-accent;
+  margin-right: 100px;
 }
 
 .Footer {
   display: flex;
+}
+
+.TagList {
+  display: flex;
+  
+  li {
+    margin-right: 4px;
+  }
 }

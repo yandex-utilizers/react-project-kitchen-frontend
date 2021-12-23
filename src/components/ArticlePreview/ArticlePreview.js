@@ -8,7 +8,7 @@ import {
 } from "../../constants/actionTypes";
 
 import classes from './ArticlePreview.module.scss';
-import { Avatar, Icon } from "ui-kit";
+import { Avatar, Icon, Tag } from "ui-kit";
 
 const FAVORITED_CLASS = "btn btn-sm btn-primary";
 const NOT_FAVORITED_CLASS = "btn btn-sm btn-outline-primary";
@@ -81,14 +81,11 @@ const ArticlePreview = props => {
                     <p className={classes.Text}>{article.body}</p>
                     <div className={classes.Footer}>
                         <span className={classes.Link}> Read more</span>
-                        <ul className="tag-list">
+                        <ul className={classes.TagList}>
                             {article.tagList.map(tag => {
                                 return (
-                                    <li
-                                        className="tag-default tag-pill tag-outline"
-                                        key={tag}
-                                    >
-                                        {tag}
+                                    <li key={tag}>
+                                        <Tag>{tag}</Tag>
                                     </li>
                                 );
                             })}

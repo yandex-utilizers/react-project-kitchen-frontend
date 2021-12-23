@@ -40,7 +40,6 @@ const Home = (props) => {
 
     return (
         <div className="home-page">
-            {/* <Banner token={this.props.token} appName={this.props.appName} /> */}
             <Intro />
             <div className="container page">
                 <div className="row">
@@ -48,7 +47,7 @@ const Home = (props) => {
 
                     <div className="col-md-3">
                         <div className="sidebar">
-                            <p>Popular Tags</p>
+                            <p>Популярные теги</p>
 
                             <Tags
                                 tags={tags}
