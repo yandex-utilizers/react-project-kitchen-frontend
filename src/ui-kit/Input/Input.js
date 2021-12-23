@@ -63,22 +63,30 @@ export const Input = forwardRef(
                         onChange={onChange}
                         {...rest}
                     />
-                    {type === PASSWORD && (
+                    {type === PASSWORD && !errors && (
                         <div
-                            className={classes.Visibility}
+                            className={classes.InputIcon}
                             onClick={handlePasswordShow}
                         >
                             {isShowPassword ? (
                                 <Icon
-                                    className={classes.VisibilityIcon}
+                                    className={classes.InputIconElement}
                                     type="VisibilityOff"
                                 />
                             ) : (
                                 <Icon
-                                    className={classes.VisibilityIcon}
+                                    className={classes.InputIconElement}
                                     type="Visibility"
                                 />
                             )}
+                        </div>
+                    )}
+                    {errors && (
+                        <div className={classes.InputIcon}>
+                            <Icon
+                                className={classes.InputIconAlert}
+                                type="Alert"
+                            />
                         </div>
                     )}
                 </div>

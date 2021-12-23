@@ -8,7 +8,7 @@ import { ROUTES } from "routes";
 import { Button, Input, Spinner } from "ui-kit";
 import classes from "./Login.module.scss";
 
-const Login = ({ className }) => {
+export const Login = ({ className }) => {
     const [state, setState] = useState({
         email: "",
         password: "",
@@ -22,8 +22,7 @@ const Login = ({ className }) => {
         if (common.token) {
             history.push(ROUTES.HOME);
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [common]);
+    }, [common, history]);
 
     useEffect(() => {
         return () => dispatch({ type: LOGIN_PAGE_UNLOADED });
@@ -48,7 +47,7 @@ const Login = ({ className }) => {
             <div className={classes.Container}>
                 <h1 className={classes.Title}>Войти</h1>
                 <p className={classes.TextCenter}>
-                    <Link className={classes.Link} to="/register">
+                    <Link className={classes.Link} to={ROUTES.REGISTER}>
                         Хотите создать аккаунт?
                     </Link>
                 </p>
@@ -56,7 +55,7 @@ const Login = ({ className }) => {
                     <fieldset>
                         <fieldset className={classes.FormGroup}>
                             <Input
-                                autoComplete="username"
+                                autoComplete="email"
                                 errors={auth.errors}
                                 id="email"
                                 label="E-mail"
@@ -95,5 +94,3 @@ const Login = ({ className }) => {
         </div>
     );
 };
-
-export default Login;

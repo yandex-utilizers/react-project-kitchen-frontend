@@ -22,6 +22,34 @@ $height: 40px;
         position: relative;
     }
 
+    &Icon {
+        display: inline-block;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        right: 16px;
+
+        &Element {
+            height: $height;
+        }
+
+        svg {
+            fill: rgba(0, 0, 0, 0.54);
+        }
+
+        &Alert {
+            height: $height;
+
+            svg {
+                fill: transparent;
+            }
+
+            path {
+                stroke: $color-alert;
+            }
+        }
+    }
+
     &::placeholder {
         @include text-default;
         color: $color-secondary;
@@ -45,22 +73,6 @@ $height: 40px;
     margin-bottom: 4px;
     margin-left: 16px;
     color: $color-primary;
-}
-
-.Visibility {
-    display: inline-block;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    right: 16px;
-
-    &Icon {
-        height: $height;
-    }
-
-    svg {
-        fill: rgba(0, 0, 0, 0.54);
-    }
 }
 
 .Error {
