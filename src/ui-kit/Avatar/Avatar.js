@@ -15,7 +15,7 @@ export const Avatar = ({
     const sizeBox = `${size - 4}px`;
     const sizeInner = `${size - 8}px`;
     const sizeWrapper = `${size}px`;
-    const sizeIcon = size * 0.6;
+    const sizeIcon = size * 0.5;
 
     const avatarRef = useRef(null);
 
