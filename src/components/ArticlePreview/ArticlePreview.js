@@ -7,7 +7,7 @@ import {
     ARTICLE_UNFAVORITED,
 } from "../../constants/actionTypes";
 
-import classes from './ArticlePreview.module.scss';
+import classes from "./ArticlePreview.module.scss";
 import { Avatar, Icon, Tag } from "ui-kit";
 
 const FAVORITED_CLASS = "btn btn-sm btn-primary";
@@ -46,8 +46,11 @@ const ArticlePreview = props => {
             <div className={classes.Image}></div>
             <div className={classes.PreviewContent}>
                 <div className={classes.Header}>
-                    <Link to={`/@${article.author.username}`} className={classes.Avatar}>
-                        <Avatar size={48}/>
+                    <Link
+                        to={`/@${article.author.username}`}
+                        className={classes.Avatar}
+                    >
+                        <Avatar size={48} />
                     </Link>
                     <div className={classes.Info}>
                         <Link
@@ -57,14 +60,15 @@ const ArticlePreview = props => {
                             {article.author.username}
                         </Link>
                         <span className="date">
-                            {
-                                new Date(article.createdAt).toLocaleDateString('ru-RU', {
+                            {new Date(article.createdAt).toLocaleDateString(
+                                "ru-RU",
+                                {
                                     year: "numeric",
                                     month: "long",
                                     day: "numeric",
                                     weekday: "short",
-                                })
-                            }
+                                }
+                            )}
                         </span>
                     </div>
                     <button
@@ -74,9 +78,11 @@ const ArticlePreview = props => {
                         <span>{article.favoritesCount}</span>
                         <Icon type="Like" />
                     </button>
-
                 </div>
-               <Link to={`/article/${article.slug}`} className={classes.ArticleLink}>
+                <Link
+                    to={`/article/${article.slug}`}
+                    className={classes.ArticleLink}
+                >
                     <h3 className={classes.Heading}>{article.title}</h3>
                     <p className={classes.Text}>{article.body}</p>
                     <div className={classes.Footer}>
@@ -93,7 +99,6 @@ const ArticlePreview = props => {
                     </div>
                 </Link>
             </div>
-
         </article>
         // <div className="article-preview">
         //     <div className="article-meta">

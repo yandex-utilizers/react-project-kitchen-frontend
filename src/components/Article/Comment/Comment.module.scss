@@ -1,0 +1,43 @@
+@import "styles";
+
+.Comment {
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: $shadow-small;
+}
+
+.Block {
+    padding: 24px 24px 0;
+
+    &Text {
+        @include text-default;
+        color: $color-secondary;
+    }
+}
+
+.Footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px;
+}
+
+.User {
+    display: flex;
+}
+
+.UserInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 8px;
+}
+
+.UserName {
+    @include text-default;
+}
+
+.DatePosted {
+    @include text-caption;
+    color: $color-secondary;
+}

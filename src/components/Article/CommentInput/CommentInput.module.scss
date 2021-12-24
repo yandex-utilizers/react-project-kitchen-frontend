@@ -1,0 +1,35 @@
+@import "styles";
+
+.CommentInput {
+    margin-bottom: 32px;
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: $shadow-small;
+}
+
+.Textarea {
+    padding: 24px 24px 0;
+    box-shadow: none;
+}
+
+.Footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px;
+}
+
+.User {
+    display: flex;
+}
+
+.UserInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 8px;
+}
+
+.UserName {
+    @include text-default;
+}
