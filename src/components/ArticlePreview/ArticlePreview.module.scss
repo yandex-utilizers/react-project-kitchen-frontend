@@ -34,9 +34,20 @@
     border: none;
     display: flex;
     align-items: center;
+    
+    &:focus {
+        outline: none;
+    }
 
     span {
         margin-right: 10px;
+    }
+
+    &.active {
+        svg {
+            fill:   $color-alert;
+            color: $color-alert;
+        }
     }
 }
 

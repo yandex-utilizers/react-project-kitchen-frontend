@@ -6,6 +6,7 @@ import cn from "classnames";
 import classes from "./Header.module.scss";
 import Icon from "../../ui-kit/Icon";
 import Avatar from "../../ui-kit/Avatar";
+import {ROUTES} from "routes";
 
 const LoggedOutView = props => {
     if (!props.currentUser) {
@@ -13,14 +14,14 @@ const LoggedOutView = props => {
             <nav className={cn(classes.navBar)}>
                 <ul className={cn(classes.navList)}>
                     <li className={cn(classes.navItem)}>
-                        <Link to="/" className={cn(classes.navLink)}>
+                        <Link to={ROUTES.HOME} className={cn(classes.navLink)}>
                             <Icon className={classes.LinkIcon} type="Home" />
                             Главная
                         </Link>
                     </li>
 
                     <li className={cn(classes.navItem)}>
-                        <Link to="/login" className={cn(classes.navLink)}>
+                        <Link to={ROUTES.LOGIN} className={cn(classes.navLink)}>
                             <Icon className={classes.LinkIcon} type="Login" />
                             Войти
                         </Link>
@@ -38,21 +39,21 @@ const LoggedInView = props => {
             <nav className={cn(classes.navBar)}>
                 <ul className={cn(classes.navList)}>
                     <li className={cn(classes.navItem)}>
-                        <Link to="/" className={cn(classes.navLink)}>
+                        <Link to={ROUTES.HOME} className={cn(classes.navLink)}>
                             <Icon className={classes.LinkIcon} type="Home" />
                             Главная
                         </Link>
                     </li>
 
                     <li className={cn(classes.navItem)}>
-                        <Link to="/editor" className={cn(classes.navLink)}>
+                        <Link to={ROUTES.EDITOR} className={cn(classes.navLink)}>
                             <Icon className={classes.LinkIcon} type="Edit" />
                             Новая запись
                         </Link>
                     </li>
 
                     <li className={cn(classes.navItem)}>
-                        <Link to="/settings" className={cn(classes.navLink)}>
+                        <Link to={ROUTES.SETTINGS} className={cn(classes.navLink)}>
                             <Icon
                                 className={classes.LinkIcon}
                                 type="Settings"

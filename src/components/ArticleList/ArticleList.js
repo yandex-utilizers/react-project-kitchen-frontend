@@ -16,7 +16,7 @@ export const ArticleList = props => {
     return (
         <div>
             {props.articles.map(article => {
-                return <ArticlePreview article={article} key={article.slug} />;
+                return <ArticlePreview article={article} id={article.slug} key={article.slug} />;
             })}
 
             <ListPagination

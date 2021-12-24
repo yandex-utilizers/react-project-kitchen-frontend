@@ -21,8 +21,8 @@ export default (state = {}, action) => {
                     if (article.slug === action.payload.article.slug) {
                         return {
                             ...article,
-                            favorited: true,
-                            favoritesCount: article.favoritesCount++,
+                            favorited: action.payload.article.favorited,
+                            favoritesCount: action.payload.article.favoritesCount,
                         };
                     }
                     return article;
@@ -35,8 +35,8 @@ export default (state = {}, action) => {
                     if (article.slug === action.payload.article.slug) {
                         return {
                             ...article,
-                            favorited: false,
-                            favoritesCount: state.article.favoritesCount--,
+                            favorited: action.payload.article.favorited,
+                            favoritesCount: action.payload.article.favoritesCount,
                         };
                     }
                     return article;

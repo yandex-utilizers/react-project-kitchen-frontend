@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import agent from "../../agent";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import {
     ARTICLE_FAVORITED,
     ARTICLE_UNFAVORITED,
@@ -14,26 +14,27 @@ const FAVORITED_CLASS = "btn btn-sm btn-primary";
 const NOT_FAVORITED_CLASS = "btn btn-sm btn-outline-primary";
 
 const ArticlePreview = props => {
-    const article = props.article;
+    // const article = props.article;
     const dispatch = useDispatch();
-
+    const article = useSelector(store => store.articleList.articles.find(articleInList => articleInList.slug === props.id));
     const favoriteButtonClass = article.favorited
-        ? FAVORITED_CLASS
-        : NOT_FAVORITED_CLASS;
-
+    ? FAVORITED_CLASS
+    : NOT_FAVORITED_CLASS;
+    
     const makeFavorite = slug => {
-        console.log(slug);
+        // console.log(originalArticle);
         dispatch({
             type: ARTICLE_FAVORITED,
             payload: agent.Articles.favorite(slug),
         });
     }
-    const makeNotFavorite = slug =>
+    const makeNotFavorite = slug => {
+        // console.log(originalArticle);
         dispatch({
             type: ARTICLE_UNFAVORITED,
             payload: agent.Articles.unfavorite(slug),
         });
-
+    }
 
     const handleClick = ev => {
         ev.preventDefault();
@@ -75,7 +76,7 @@ const ArticlePreview = props => {
                         </span>
                     </div>
                     <button
-                        className={classes.LikeButton}
+                        className={`${classes.LikeButton} ${article.favorited ? classes.active : ''}`}
                         onClick={handleClick}
                     >
                         <span>{article.favoritesCount}</span>
