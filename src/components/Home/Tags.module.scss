@@ -1,0 +1,21 @@
+@import "styles";
+
+.Panel {
+  border-radius: 8px;
+  box-shadow: $shadow-small;
+  padding: 16px;
+}
+
+.Heading {
+  margin-bottom: 16px;
+}
+
+.TagsList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  
+  & > * {
+    margin-left: 3px;
+  }
+}

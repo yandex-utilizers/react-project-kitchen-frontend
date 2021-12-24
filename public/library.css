@@ -320,11 +320,11 @@ a {
     color: #5cb85c;
     text-decoration: none;
 }
-a:focus,
+/* a:focus,
 a:hover {
     color: #3d8b3d;
     text-decoration: underline;
-}
+} */
 a:focus {
     outline: thin dotted;
     outline: 5px auto -webkit-focus-ring-color;

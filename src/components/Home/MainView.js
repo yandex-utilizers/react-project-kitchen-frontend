@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { CHANGE_TAB } from "../../constants/actionTypes";
 import { ArticleList } from "../index";
 import { store } from "store";
+import classes from "./MainView.module.scss";
 
 const YourFeedTab = props => {
     if (props.token) {
@@ -17,12 +18,9 @@ const YourFeedTab = props => {
         };
 
         return (
-            <li className="nav-item">
+            <li className={props.tab === "feed" ? classes.active : ""}>
                 <a
                     href=""
-                    className={
-                        props.tab === "feed" ? "nav-link active" : "nav-link"
-                    }
                     onClick={clickHandler}
                 >
                     Ваша лента
@@ -39,10 +37,9 @@ const GlobalFeedTab = props => {
         props.onTabClick("all", agent.Articles.all, agent.Articles.all());
     };
     return (
-        <li className="nav-item">
+        <li className={props.tab === "all" ? classes.active : ""}>
             <a
                 href=""
-                className={props.tab === "all" ? "nav-link active" : "nav-link"}
                 onClick={clickHandler}
             >
                 Лента
@@ -57,8 +54,8 @@ const TagFilterTab = props => {
     }
 
     return (
-        <li className="nav-item">
-            <a href="" className="nav-link active">
+        <li className={classes.active}>
+            <a href="">
                 <i className="ion-pound"></i> {props.tag}
             </a>
         </li>
@@ -76,8 +73,8 @@ const MainView = props => {
 
     return (
         <div className="col-md-9">
-            <div className="feed-toggle">
-                <ul className="nav nav-pills outline-active">
+            <div className={classes.TabControls}>
+                <ul>
                     <YourFeedTab
                         token={token}
                         tab={articleListProps.tab}
