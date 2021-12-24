@@ -1,7 +1,7 @@
 import { HOME_PAGE_LOADED, HOME_PAGE_UNLOADED } from "../constants/actionTypes";
 
 const initialState = {
-    tags: ['test1', 'test2'],
+    tags: ["test1", "test2"],
 };
 
 export default (state = initialState, action) => {

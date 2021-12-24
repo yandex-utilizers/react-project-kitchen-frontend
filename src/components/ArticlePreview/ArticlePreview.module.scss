@@ -1,75 +1,74 @@
 @import "styles";
 
 .ArticlePreview {
-  display: flex;
-  padding-top: 32px;
-  padding-bottom: 32px;
-  border-bottom: 1px solid $color-devider;
-  width: 100%;
+    display: flex;
+    padding-top: 32px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid $color-devider;
+    width: 100%;
 }
 
 .Image {
-  width: 160px;
-  margin-right: 16px;
-  background-color: $color-input;
-  border-radius: 5px;
+    width: 160px;
+    margin-right: 16px;
+    background-color: $color-input;
+    border-radius: 5px;
 }
 
 .PreviewContent {
-  width: calc(100% - 176px);
-
+    width: calc(100% - 176px);
 }
 
 .Avatar {
-  margin-right: 8px;
+    margin-right: 8px;
 }
 
 .Header {
-  display: flex;
-  margin-bottom: 16px;
+    display: flex;
+    margin-bottom: 16px;
 }
 
 .LikeButton {
-  margin-left: auto;
-  background-color: transparent;
-  border: none;
-  display: flex;
-  align-items: center;
+    margin-left: auto;
+    background-color: transparent;
+    border: none;
+    display: flex;
+    align-items: center;
 
-  span {
-    margin-right: 10px;
-  }
+    span {
+        margin-right: 10px;
+    }
 }
 
 .Info {
-  display: flex;
-  flex-direction: column;
+    display: flex;
+    flex-direction: column;
 }
 
 .Heading {
-  @include text-headline;
-  margin-bottom: 8px;
+    @include text-headline;
+    margin-bottom: 8px;
 }
 
 .Text {
-  color: $color-secondary;
-  margin-bottom: 16px;
+    color: $color-secondary;
+    margin-bottom: 16px;
 }
 
 .Link {
-  text-decoration: underline;
-  color: $color-accent;
-  margin-right: 100px;
+    text-decoration: underline;
+    color: $color-accent;
+    margin-right: 100px;
 }
 
 .Footer {
-  display: flex;
+    display: flex;
 }
 
 .TagList {
-  display: flex;
-  
-  li {
-    margin-right: 4px;
-  }
+    display: flex;
+
+    li {
+        margin-right: 4px;
+    }
 }

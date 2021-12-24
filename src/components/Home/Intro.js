@@ -1,6 +1,6 @@
 import React from "react";
 import classes from "./Intro.module.scss";
-import Avatar from '../../ui-kit/Avatar';
+import Avatar from "../../ui-kit/Avatar";
 
 const Intro = () => {
     return (

@@ -1,6 +1,6 @@
 import MainView from "./MainView";
 import Intro from "./Intro";
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import Tags from "./Tags";
 import agent from "../../agent";
 import { connect, useSelector, useDispatch } from "react-redux";
@@ -12,14 +12,16 @@ import {
 
 const Promise = global.Promise;
 
-const Home = (props) => {
+const Home = props => {
     const dispatch = useDispatch();
     const appName = useSelector(store => store.common.appName);
     const token = useSelector(store => store.common.token);
     const tags = useSelector(store => store.home.tags);
 
-    const onClickTag = (tag, pager, payload) => dispatch({ type: APPLY_TAG_FILTER, tag, pager, payload });
-    const onLoad = (tab, pager, payload) => dispatch({ type: HOME_PAGE_LOADED, tab, pager, payload });
+    const onClickTag = (tag, pager, payload) =>
+        dispatch({ type: APPLY_TAG_FILTER, tag, pager, payload });
+    const onLoad = (tab, pager, payload) =>
+        dispatch({ type: HOME_PAGE_LOADED, tab, pager, payload });
     const onUnload = () => dispatch({ type: HOME_PAGE_UNLOADED });
 
     useEffect(() => {
@@ -33,7 +35,7 @@ const Home = (props) => {
             articlesPromise,
             Promise.all([agent.Tags.getAll(), articlesPromise()])
         );
-    return () => {
+        return () => {
             onUnload();
         };
     }, [token]);
@@ -49,16 +51,13 @@ const Home = (props) => {
                         <div className="sidebar">
                             <p>Популярные теги</p>
 
-                            <Tags
-                                tags={tags}
-                                onClickTag={onClickTag}
-                            />
+                            <Tags tags={tags} onClickTag={onClickTag} />
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     );
-}
+};
 
 export default Home;

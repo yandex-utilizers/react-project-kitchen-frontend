@@ -43,9 +43,7 @@ export const Avatar = ({
 
     return (
         <div className={classnames(classes.Avatar, className)} ref={avatarRef}>
-            <div
-                className={classnames(classes.Inner)}
-            >
+            <div className={classnames(classes.Inner)}>
                 {user ? (
                     <img
                         className={classes.Face}

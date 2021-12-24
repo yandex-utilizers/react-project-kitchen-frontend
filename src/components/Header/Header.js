@@ -4,8 +4,8 @@ import logoImg from "../../images/logo.svg";
 import { Logo } from "../Logo/Logo";
 import cn from "classnames";
 import classes from "./Header.module.scss";
-import Icon from '../../ui-kit/Icon';
-import Avatar from '../../ui-kit/Avatar';
+import Icon from "../../ui-kit/Icon";
+import Avatar from "../../ui-kit/Avatar";
 
 const LoggedOutView = props => {
     if (!props.currentUser) {
@@ -14,7 +14,7 @@ const LoggedOutView = props => {
                 <ul className={cn(classes.navList)}>
                     <li className={cn(classes.navItem)}>
                         <Link to="/" className={cn(classes.navLink)}>
-                            <Icon className={classes.LinkIcon} type="Home"/>
+                            <Icon className={classes.LinkIcon} type="Home" />
                             Главная
                         </Link>
                     </li>
@@ -53,7 +53,10 @@ const LoggedInView = props => {
 
                     <li className={cn(classes.navItem)}>
                         <Link to="/settings" className={cn(classes.navLink)}>
-                            <Icon className={classes.LinkIcon} type="Settings" />
+                            <Icon
+                                className={classes.LinkIcon}
+                                type="Settings"
+                            />
                             Настройки
                         </Link>
                     </li>
@@ -64,7 +67,11 @@ const LoggedInView = props => {
                             className={cn(classes.navLink)}
                         >
                             {/* <Avatar size={24}/> */}
-                            <Icon className={classes.LinkIcon} type="User" size={24} />
+                            <Icon
+                                className={classes.LinkIcon}
+                                type="User"
+                                size={24}
+                            />
                             {props.currentUser.username}
                         </Link>
                     </li>

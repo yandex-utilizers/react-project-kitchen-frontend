@@ -1,0 +1,17 @@
+@import "styles";
+
+.DeleteButton {
+    display: inline-flex;
+    cursor: pointer;
+
+    path {
+        stroke: $color-alert;
+        transition: all 0.15s;
+    }
+
+    &:hover {
+        path {
+            stroke: $color-accent;
+        }
+    }
+}

@@ -71,7 +71,8 @@ const MainView = props => {
     const tags = useSelector(store => store.home.tags);
 
     const dispatch = useDispatch();
-    const onTabClick = (tab, pager, payload) => dispatch({ type: CHANGE_TAB, tab, pager, payload });
+    const onTabClick = (tab, pager, payload) =>
+        dispatch({ type: CHANGE_TAB, tab, pager, payload });
 
     return (
         <div className="col-md-9">

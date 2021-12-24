@@ -1,0 +1,9 @@
+@import "styles";
+
+.CommentList {
+    width: 100%;
+}
+
+.Comment + .Comment {
+    margin-top: 32px;
+}
