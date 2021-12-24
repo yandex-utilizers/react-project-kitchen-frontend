@@ -18,4 +18,8 @@
         background-color: $color-accent;
         border: 1px solid $color-accent;
     }
+
+    &:focus {
+        outline: none;
+    }
 }

@@ -15,6 +15,19 @@ import {
 export default (state = {}, action) => {
     switch (action.type) {
         case ARTICLE_FAVORITED:
+            return {
+                ...state,
+                articles: state.articles.map(article => {
+                    if (article.slug === action.payload.article.slug) {
+                        return {
+                            ...article,
+                            favorited: true,
+                            favoritesCount: article.favoritesCount++,
+                        };
+                    }
+                    return article;
+                })
+            }
         case ARTICLE_UNFAVORITED:
             return {
                 ...state,
@@ -22,9 +35,8 @@ export default (state = {}, action) => {
                     if (article.slug === action.payload.article.slug) {
                         return {
                             ...article,
-                            favorited: action.payload.article.favorited,
-                            favoritesCount:
-                                action.payload.article.favoritesCount,
+                            favorited: false,
+                            favoritesCount: state.article.favoritesCount--,
                         };
                     }
                     return article;
