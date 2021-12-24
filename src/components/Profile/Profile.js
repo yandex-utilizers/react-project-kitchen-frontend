@@ -66,7 +66,9 @@ const mapDispatchToProps = dispatch => ({
             type: FOLLOW_USER,
             payload: agent.Profile.follow(username),
         }),
-    onLoad: payload => dispatch({ type: PROFILE_PAGE_LOADED, payload }),
+    onLoad: payload => {
+        dispatch({ type: PROFILE_PAGE_LOADED, payload });
+    },
     onUnfollow: username =>
         dispatch({
             type: UNFOLLOW_USER,
@@ -171,4 +173,4 @@ class Profile extends React.Component {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Profile);
-export { Profile, mapStateToProps };
+export {Profile as ProfileNotConnected, mapStateToProps };

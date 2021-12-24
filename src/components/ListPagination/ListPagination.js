@@ -1,13 +1,15 @@
 import React from "react";
 import agent from "../../agent";
-import { connect } from "react-redux";
+import { useDispatch } from "react-redux";
 import { SET_PAGE } from "../../constants/actionTypes";
-
-const mapDispatchToProps = dispatch => ({
-    onSetPage: (page, payload) => dispatch({ type: SET_PAGE, page, payload }),
-});
+import cn from "classnames";
+import classes from './ListPagination.module.scss';
 
 const ListPagination = props => {
+    const dispatch = useDispatch();
+
+    const onSetPage = (page, payload) => dispatch({ type: SET_PAGE, page, payload });
+
     if (props.articlesCount <= 10) {
         return null;
     }
@@ -19,15 +21,15 @@ const ListPagination = props => {
 
     const setPage = page => {
         if (props.pager) {
-            props.onSetPage(page, props.pager(page));
+            onSetPage(page, props.pager(page));
         } else {
-            props.onSetPage(page, agent.Articles.all(page));
+            onSetPage(page, agent.Articles.all(page));
         }
     };
 
     return (
-        <nav>
-            <ul className="pagination">
+        <nav className={classes.ListPagination}>
+            <ul className={classes.List}>
                 {range.map(v => {
                     const isCurrent = v === props.currentPage;
                     const onClick = ev => {
@@ -36,13 +38,11 @@ const ListPagination = props => {
                     };
                     return (
                         <li
-                            className={
-                                isCurrent ? "page-item active" : "page-item"
-                            }
+                            className={cn(classes.Item, {[`${classes.Active}`]: isCurrent})}
                             onClick={onClick}
                             key={v.toString()}
                         >
-                            <a className="page-link" href="">
+                            <a className={classes.Link} href="">
                                 {v + 1}
                             </a>
                         </li>
@@ -53,4 +53,4 @@ const ListPagination = props => {
     );
 };
 
-export default connect(() => ({}), mapDispatchToProps)(ListPagination);
+export default ListPagination;

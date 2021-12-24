@@ -64,6 +64,10 @@
 .Text {
     color: $color-secondary;
     margin-bottom: 16px;
+    -webkit-line-clamp: 4;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
 .Link {
