@@ -12,20 +12,24 @@ import { Avatar, Icon, Tag } from "ui-kit";
 
 const ArticlePreview = props => {
     const dispatch = useDispatch();
-    const article = useSelector(store => store.articleList.articles.find(articleInList => articleInList.slug === props.id));
-    
+    const article = useSelector(store =>
+        store.articleList.articles.find(
+            articleInList => articleInList.slug === props.id
+        )
+    );
+
     const makeFavorite = slug => {
         dispatch({
             type: ARTICLE_FAVORITED,
             payload: agent.Articles.favorite(slug),
         });
-    }
+    };
     const makeNotFavorite = slug => {
         dispatch({
             type: ARTICLE_UNFAVORITED,
             payload: agent.Articles.unfavorite(slug),
         });
-    }
+    };
 
     const handleClick = ev => {
         ev.preventDefault();
@@ -67,7 +71,9 @@ const ArticlePreview = props => {
                         </span>
                     </div>
                     <button
-                        className={`${classes.LikeButton} ${article.favorited ? classes.active : ''}`}
+                        className={`${classes.LikeButton} ${
+                            article.favorited ? classes.active : ""
+                        }`}
                         onClick={handleClick}
                     >
                         <span>{article.favoritesCount}</span>

@@ -1,32 +1,32 @@
 @import "styles";
 
 .TabControls {
-  border-bottom: 1px solid $color-devider;
-  ul {
-    display: flex;
-  }
-
-  li {
-    padding: 16px 24px;
-
-    &.active {
-      border-bottom: 1px solid $color-accent;
-      color: $color-primary;
-
-      a {
-        color: $color-primary;
-      }
+    border-bottom: 1px solid $color-devider;
+    ul {
+        display: flex;
     }
 
-    a {
-      color: $color-secondary;
-      transition: color 0.3s ease;
-      text-decoration: none;
+    li {
+        padding: 16px 24px;
 
-      &:hover,
-      &:focus {
-        color: $color-primary;
-      }
+        &.active {
+            border-bottom: 1px solid $color-accent;
+            color: $color-primary;
+
+            a {
+                color: $color-primary;
+            }
+        }
+
+        a {
+            color: $color-secondary;
+            transition: color 0.3s ease;
+            text-decoration: none;
+
+            &:hover,
+            &:focus {
+                color: $color-primary;
+            }
+        }
     }
-  }
 }

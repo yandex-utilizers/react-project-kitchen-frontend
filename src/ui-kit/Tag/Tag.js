@@ -1,5 +1,5 @@
 import React from "react";
-import {useSelector} from 'react-redux';
+import { useSelector } from "react-redux";
 import classnames from "classnames";
 import classes from "./Tag.module.scss";
 
@@ -8,7 +8,8 @@ export const Tag = ({ className, children, onClick }) => {
     const isActive = children === activeTag;
 
     return (
-        <button onClick={onClick}
+        <button
+            onClick={onClick}
             className={classnames(classes.Tag, className, {
                 [classes.Tag__active]: isActive,
             })}

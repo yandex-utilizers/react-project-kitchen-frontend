@@ -6,7 +6,7 @@ import cn from "classnames";
 import classes from "./Header.module.scss";
 import Icon from "../../ui-kit/Icon";
 import Avatar from "../../ui-kit/Avatar";
-import {ROUTES} from "routes";
+import { ROUTES } from "routes";
 
 const LoggedOutView = props => {
     if (!props.currentUser) {
@@ -46,14 +46,20 @@ const LoggedInView = props => {
                     </li>
 
                     <li className={cn(classes.navItem)}>
-                        <Link to={ROUTES.EDITOR} className={cn(classes.navLink)}>
+                        <Link
+                            to={ROUTES.EDITOR}
+                            className={cn(classes.navLink)}
+                        >
                             <Icon className={classes.LinkIcon} type="Edit" />
                             Новая запись
                         </Link>
                     </li>
 
                     <li className={cn(classes.navItem)}>
-                        <Link to={ROUTES.SETTINGS} className={cn(classes.navLink)}>
+                        <Link
+                            to={ROUTES.SETTINGS}
+                            className={cn(classes.navLink)}
+                        >
                             <Icon
                                 className={classes.LinkIcon}
                                 type="Settings"

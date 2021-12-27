@@ -1,49 +1,49 @@
 @import "styles";
 
 .ListPagination {
-  display: flex;
-  justify-content: center;
-  margin-top: 32px;
-  margin-bottom: 32px;
+    display: flex;
+    justify-content: center;
+    margin-top: 32px;
+    margin-bottom: 32px;
 }
 
 .List {
-  display: flex;
+    display: flex;
 }
 
 .Item {
-  color: $color-primary;
-  margin-left: -1px;
-  transition: all 0.3s ease;
+    color: $color-primary;
+    margin-left: -1px;
+    transition: all 0.3s ease;
 
-  &:hover {
-    .Link {
-      background-color: $color-devider;
+    &:hover {
+        .Link {
+            background-color: $color-devider;
+        }
     }
-  }
 
-  &.Active {
-    color: white;
-    
-    .Link {
-      background-color: $color-accent;
+    &.Active {
+        color: white;
+
+        .Link {
+            background-color: $color-accent;
+        }
     }
-  }
 
-  &:first-child .Link {
-    border-bottom-left-radius: 8px;
-    border-top-left-radius: 8px;
-  }
+    &:first-child .Link {
+        border-bottom-left-radius: 8px;
+        border-top-left-radius: 8px;
+    }
 
-  &:last-child .Link {
-    border-bottom-right-radius: 8px;
-    border-top-right-radius: 8px;
-  }
+    &:last-child .Link {
+        border-bottom-right-radius: 8px;
+        border-top-right-radius: 8px;
+    }
 }
 
 .Link {
-  color: inherit;
-  padding: 14px 26px;
-  border: 1px solid $color-devider;
-  transition: background-color 0.3s ease;
+    color: inherit;
+    padding: 14px 26px;
+    border: 1px solid $color-devider;
+    transition: background-color 0.3s ease;
 }

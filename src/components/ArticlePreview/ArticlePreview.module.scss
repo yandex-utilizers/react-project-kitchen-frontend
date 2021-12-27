@@ -34,7 +34,7 @@
     border: none;
     display: flex;
     align-items: center;
-    
+
     &:focus {
         outline: none;
     }
@@ -45,7 +45,7 @@
 
     &.active {
         svg {
-            fill:   $color-alert;
+            fill: $color-alert;
             color: $color-alert;
         }
     }

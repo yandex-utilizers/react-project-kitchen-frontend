@@ -46,10 +46,7 @@ const Home = props => {
             <div className="container page">
                 <div className="row">
                     <MainView />
-                    <Tags
-                        tags={tags}
-                        onClickTag={onClickTag}
-                    />
+                    <Tags tags={tags} onClickTag={onClickTag} />
                 </div>
             </div>
         </div>

@@ -45,7 +45,9 @@ export const Editor = ({ className }) => {
 
     const handleSubmitForm = event => {
         event.preventDefault();
-        const tags = handleRemoveAllSpaces(state.tagInput).split(",").filter(tag => tag.trim() !== '');
+        const tags = handleRemoveAllSpaces(state.tagInput)
+            .split(",")
+            .filter(tag => tag.trim() !== "");
         const article = {
             title: state.title,
             description: state.description,
