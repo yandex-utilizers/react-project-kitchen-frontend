@@ -5,11 +5,12 @@ import classes from "./Tags.module.scss";
 
 const Tags = props => {
     const tags = props.tags;
-        return (
-            <div className="col-md-3">
-                <div className={classes.Panel}>
-                    <p className={classes.Heading}>Популярные теги</p>
-                    {tags && <div className={classes.TagsList}>
+    return (
+        <div className="col-md-3">
+            <div className={classes.Panel}>
+                <p className={classes.Heading}>Популярные теги</p>
+                {tags && (
+                    <div className={classes.TagsList}>
                         {tags.map(tag => {
                             const handleClick = ev => {
                                 ev.preventDefault();
@@ -22,16 +23,16 @@ const Tags = props => {
 
                             return (
                                 <Tag key={tag} onClick={handleClick}>
-                                    {tag}    
+                                    {tag}
                                 </Tag>
                             );
                         })}
-                    </div>}
-                    {!tags && <div>Теги загружаются...</div>}
-                </div>
+                    </div>
+                )}
+                {!tags && <div>Теги загружаются...</div>}
             </div>
-
-        );
+        </div>
+    );
 };
 
 export default Tags;

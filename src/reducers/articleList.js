@@ -22,12 +22,13 @@ export default (state = {}, action) => {
                         return {
                             ...article,
                             favorited: action.payload.article.favorited,
-                            favoritesCount: action.payload.article.favoritesCount,
+                            favoritesCount:
+                                action.payload.article.favoritesCount,
                         };
                     }
                     return article;
-                })
-            }
+                }),
+            };
         case ARTICLE_UNFAVORITED:
             return {
                 ...state,
@@ -36,7 +37,8 @@ export default (state = {}, action) => {
                         return {
                             ...article,
                             favorited: action.payload.article.favorited,
-                            favoritesCount: action.payload.article.favoritesCount,
+                            favoritesCount:
+                                action.payload.article.favoritesCount,
                         };
                     }
                     return article;

@@ -3,12 +3,13 @@ import agent from "../../agent";
 import { useDispatch } from "react-redux";
 import { SET_PAGE } from "../../constants/actionTypes";
 import cn from "classnames";
-import classes from './ListPagination.module.scss';
+import classes from "./ListPagination.module.scss";
 
 const ListPagination = props => {
     const dispatch = useDispatch();
 
-    const onSetPage = (page, payload) => dispatch({ type: SET_PAGE, page, payload });
+    const onSetPage = (page, payload) =>
+        dispatch({ type: SET_PAGE, page, payload });
 
     if (props.articlesCount <= 10) {
         return null;
@@ -38,7 +39,9 @@ const ListPagination = props => {
                     };
                     return (
                         <li
-                            className={cn(classes.Item, {[`${classes.Active}`]: isCurrent})}
+                            className={cn(classes.Item, {
+                                [`${classes.Active}`]: isCurrent,
+                            })}
                             onClick={onClick}
                             key={v.toString()}
                         >

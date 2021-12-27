@@ -23,6 +23,7 @@ export const Input = forwardRef(
         },
         ref
     ) => {
+        const FILE = "file";
         const PASSWORD = "password";
         const TEXT = "text";
         const [isShowPassword, setIsShowPassword] = useState(false);
@@ -34,6 +35,9 @@ export const Input = forwardRef(
         const handleType = type => {
             if (type === TEXT) {
                 return TEXT;
+            }
+            if (type === FILE) {
+                return FILE;
             }
             if (type === PASSWORD) {
                 type = isShowPassword ? TEXT : PASSWORD;

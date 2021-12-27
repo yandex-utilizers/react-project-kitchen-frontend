@@ -19,10 +19,7 @@ const YourFeedTab = props => {
 
         return (
             <li className={props.tab === "feed" ? classes.active : ""}>
-                <a
-                    href=""
-                    onClick={clickHandler}
-                >
+                <a href="" onClick={clickHandler}>
                     Ваша лента
                 </a>
             </li>
@@ -38,10 +35,7 @@ const GlobalFeedTab = props => {
     };
     return (
         <li className={props.tab === "all" ? classes.active : ""}>
-            <a
-                href=""
-                onClick={clickHandler}
-            >
+            <a href="" onClick={clickHandler}>
                 Лента
             </a>
         </li>
