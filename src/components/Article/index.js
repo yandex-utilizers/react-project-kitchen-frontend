@@ -1,4 +1,5 @@
 import React from "react";
+import classnames from "classnames";
 import { connect } from "react-redux";
 import agent from "agent";
 import marked from "marked";
@@ -8,6 +9,7 @@ import {
     ARTICLE_PAGE_LOADED,
     ARTICLE_PAGE_UNLOADED,
 } from "../../constants/actionTypes";
+import classes from './Article.module.scss';
 
 const mapStateToProps = state => ({
     ...state.article,
@@ -35,7 +37,7 @@ class Article extends React.Component {
 
     render() {
         if (!this.props.article) {
-            return null;
+            return  null;
         }
 
         const markup = {
@@ -47,37 +49,39 @@ class Article extends React.Component {
                 this.props.article.author.username;
         return (
             <div className="article-page">
+                <hr />
                 <div className="banner">
                     <div className="container">
-                        <h1>{this.props.article.title}</h1>
                         <ArticleMeta
                             article={this.props.article}
                             canModify={canModify}
                         />
+
                     </div>
+                    <hr />
+
                 </div>
 
                 <div className="container page">
                     <div className="row article-content">
                         <div className="col-xs-12">
-                            <div dangerouslySetInnerHTML={markup}></div>
-
-                            <ul className="tag-list">
+                            <h1 className={classes.Title}>{this.props.article.title}</h1>
+                            <div className={classes.Image}><img src={''}></img></div>
+                            <div className={classes.Content} dangerouslySetInnerHTML={markup}></div>
+                            <ul className={classes.TagList}>
                                 {this.props.article.tagList.map(tag => {
                                     return (
                                         <li
                                             className="tag-default tag-pill tag-outline"
                                             key={tag}
                                         >
-                                            {tag}
+                                            {'#'+tag}
                                         </li>
                                     );
                                 })}
                             </ul>
                         </div>
                     </div>
-
-                    <hr />
 
                     <div className="article-actions"></div>
 
