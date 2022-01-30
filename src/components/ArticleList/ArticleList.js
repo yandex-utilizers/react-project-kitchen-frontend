@@ -1,14 +1,18 @@
+import React from "react";
+import { isEmpty } from 'lodash';
 import ArticlePreview from "../ArticlePreview";
 import ListPagination from "../ListPagination";
-import React from "react";
+import { Spinner } from "ui-kit";
+import styles from './Article.module.css';
+
 
 export const ArticleList = props => {
-    if (!props.articles) {
-        return <div className="article-preview">Loading...</div>;
+    if (isEmpty(props.articles)) {
+        return <div className={styles.articlePreview}><Spinner /></div>;
     }
 
-    if (props.articles.length === 0) {
-        return <div className="article-preview">Здесь ничего нет... пока.</div>;
+    if (isEmpty(props.articles)) {
+        return <div className={styles.articlePreview}>Здесь ничего нет... пока.</div>;
     }
 
     return (
