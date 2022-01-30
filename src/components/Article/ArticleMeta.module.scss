@@ -1,0 +1,21 @@
+@import "styles";
+
+.ArticleMeta {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px;
+}
+
+.Header {
+  display: flex;
+  margin-bottom: 16px;
+}
+
+.Avatar {
+  margin-right: 8px;
+}
+
+.Info {
+  display: flex;
+  flex-direction: column;
+}

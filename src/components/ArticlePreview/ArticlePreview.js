@@ -1,14 +1,15 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import agent from "../../agent";
 import { useSelector, useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
+import { ROUTES } from '../../routes/'
 import {
     ARTICLE_FAVORITED,
     ARTICLE_UNFAVORITED,
 } from "../../constants/actionTypes";
-
-import classes from "./ArticlePreview.module.scss";
 import { Avatar, Icon, Tag } from "ui-kit";
+import agent from "../../agent";
+import classes from "./ArticlePreview.module.scss";
+
 
 const ArticlePreview = props => {
     const dispatch = useDispatch();
@@ -81,7 +82,7 @@ const ArticlePreview = props => {
                     </button>
                 </div>
                 <Link
-                    to={`/article/${article.slug}`}
+                    to={`${ROUTES.ARTICLE}/${article.slug}`}
                     className={classes.ArticleLink}
                 >
                     <h3 className={classes.Heading}>{article.title}</h3>
