@@ -63,7 +63,7 @@ const Article = () => {
                     <div className="row article-content">
                         <div className="col-xs-12">
                             <h1 className={classes.Title}>{article.title}</h1>
-                            <div className={classes.Image}><img src={""}></img></div>
+                            <div className={classes.Image}><img src={article.image}></img></div>
                             <div className={classes.Content}>{article.body}</div>
                             <ul className={classes.TagList}>
                                 {article.tagList.map(tag => {

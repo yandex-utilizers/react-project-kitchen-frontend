@@ -25,6 +25,7 @@ export const Editor = ({ className }) => {
         tagInput: "",
         tagList: [],
         title: "",
+        image: ""
     });
     const editor = useSelector(state => state.editor);
     const dispatch = useDispatch();
@@ -53,6 +54,7 @@ export const Editor = ({ className }) => {
             description: state.description,
             body: state.body,
             tagList: tags,
+            image: state.image,
         };
         const slug = { slug: state.articleSlug };
         const promise = state.articleSlug
@@ -91,6 +93,7 @@ export const Editor = ({ className }) => {
                 description: editor.description,
                 tagInput: tags,
                 title: editor.title,
+                image: editor.image,
             }));
         }
     }, [isCreatePage, editor]);
@@ -138,6 +141,18 @@ export const Editor = ({ className }) => {
                                 type="text"
                                 placeholder="О чем статья"
                                 value={state.description}
+                                onChange={handleChange}
+                            />
+                        </fieldset>
+                        <fieldset className={classes.FormGroup}>
+                            <Input
+                                errors={editor.errors}
+                                id="image"
+                                label="Изображение предмета"
+                                name="image"
+                                type="text"
+                                placeholder="URL изображения предмета"
+                                value={state.image}
                                 onChange={handleChange}
                             />
                         </fieldset>
