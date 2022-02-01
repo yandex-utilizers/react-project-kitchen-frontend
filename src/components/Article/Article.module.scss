@@ -11,10 +11,16 @@
 }
 
 .Image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Image img{
   width: 100%;
   border: solid 1px #1f7e9a;
-  min-height: 50vh;
 }
+
 
 .TagList {
   color: #3c763d;
