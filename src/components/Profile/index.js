@@ -1,4 +1,3 @@
-// import { Profile, mapStateToProps } from "./Profile";
-import Profile, { ProfileNotConnected, mapStateToProps } from "./Profile";
+import { Profile } from "./Profile";
 
-export { Profile, ProfileNotConnected, mapStateToProps };
+export { Profile };
