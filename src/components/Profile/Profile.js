@@ -1,69 +1,16 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useHistory, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import classnames from "classnames";
 import agent from "agent";
+import { ArticleList } from "components";
+import { EditProfileSettings } from "components/Profile/EditProfileSettings";
+import { FollowUserButton } from "components/Profile/FollowUserButton";
 import {
-    FOLLOW_USER,
-    UNFOLLOW_USER,
     PROFILE_PAGE_LOADED,
     PROFILE_PAGE_UNLOADED,
 } from "constants/actionTypes";
-import { ROUTES } from "routes";
-import { Button } from "ui-kit";
-import { ArticleList } from "../index";
 import classes from "./Profile.module.scss";
-
-const EditProfileSettings = ({ isUser }) => {
-    const history = useHistory();
-
-    const handleRouteToEditProfile = () => {
-        history.push(ROUTES.SETTINGS);
-    };
-
-    if (isUser) {
-        return (
-            <Button typeIcon="Settings" onClick={handleRouteToEditProfile}>
-                Редактировать профиль
-            </Button>
-        );
-    }
-    return null;
-};
-
-const FollowUserButton = ({ user, isUser }) => {
-    const dispatch = useDispatch();
-
-    if (isUser) {
-        return null;
-    }
-
-    const handleClick = event => {
-        event.preventDefault();
-        if (user.following) {
-            dispatch({
-                type: UNFOLLOW_USER,
-                payload: agent.Profile.unfollow(user.username),
-            });
-        } else {
-            dispatch({
-                type: FOLLOW_USER,
-                payload: agent.Profile.follow(user.username),
-            });
-        }
-    };
-
-    return (
-        <div className={classes.Profile_FollowUserButton}>
-            <Button
-                typeIcon={user.following ? "Minus" : "Plus"}
-                onClick={handleClick}
-            >
-                {user.following ? "Отписаться" : "Подписаться"}
-            </Button>
-        </div>
-    );
-};
 
 export const Profile = () => {
     const articleList = useSelector(state => state.articleList);

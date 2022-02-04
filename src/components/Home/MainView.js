@@ -1,19 +1,30 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import agent from "agent";
-import { CHANGE_TAB } from "constants/actionTypes";
+import {
+    CHANGE_TAB,
+    PROFILE_PAGE_LOADED,
+    PROFILE_PAGE_UNLOADED,
+} from "constants/actionTypes";
 import { ArticleList } from "../index";
 import classes from "./MainView.module.scss";
 
 const YourFeedTab = props => {
+    const common = useSelector(state => state.common);
+    const { currentUser } = common;
     if (props.token) {
         const clickHandler = event => {
             event.preventDefault();
+            // props.onTabClick(
+            //     "feed",
+            //     agent.Articles.feed,
+            //     agent.Articles.feed()
+            // );
             props.onTabClick(
                 "feed",
-                agent.Articles.feed,
-                agent.Articles.feed()
+                agent.Profile.get(currentUser.username),
+                agent.Articles.byAuthor(currentUser.username)
             );
         };
 
@@ -56,13 +67,28 @@ const TagFilterTab = ({ tag }) => {
     );
 };
 
-const MainView = props => {
-    const articleListProps = useSelector(store => store.articleList);
+const MainView = () => {
+    const articleList = useSelector(store => store.articleList);
     const token = useSelector(store => store.common.token);
+    const common = useSelector(state => state.common);
+    const { currentUser } = common;
 
     const dispatch = useDispatch();
     const onTabClick = (tab, pager, payload) =>
         dispatch({ type: CHANGE_TAB, tab, pager, payload });
+
+    useEffect(() => {
+        if (currentUser && currentUser.username) {
+            const payload = Promise.all([
+                agent.Profile.get(currentUser.username),
+                agent.Articles.byAuthor(currentUser.username),
+            ]);
+            dispatch({ type: PROFILE_PAGE_LOADED, payload });
+        }
+
+        return () => dispatch({ type: PROFILE_PAGE_UNLOADED });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [dispatch]);
 
     return (
         <div className="col-md-9">
@@ -70,25 +96,23 @@ const MainView = props => {
                 <ul>
                     <YourFeedTab
                         token={token}
-                        tab={articleListProps.tab}
+                        tab={articleList.tab}
                         onTabClick={onTabClick}
                     />
 
                     <GlobalFeedTab
-                        tab={articleListProps.tab}
+                        tab={articleList.tab}
                         onTabClick={onTabClick}
                     />
 
-                    <TagFilterTab tag={articleListProps.tag} />
+                    <TagFilterTab tag={articleList.tag} />
                 </ul>
             </div>
 
             <ArticleList
-                pager={props.pager}
-                articles={articleListProps.articles}
-                loading={props.loading}
-                articlesCount={articleListProps.articlesCount}
-                currentPage={articleListProps.currentPage}
+                articles={articleList.articles}
+                articlesCount={articleList.articlesCount}
+                currentPage={articleList.currentPage}
             />
         </div>
     );

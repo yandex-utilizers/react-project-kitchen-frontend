@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import classnames from "classnames";
 import { isEmpty } from "lodash";
 import agent from "agent";
 import {
@@ -49,15 +50,13 @@ const Article = () => {
     } else {
         return (
             <div className="article-page">
-                <hr />
-                <div className="banner">
-                    <div className="container">
+                <div className={classes.Banner}>
+                    <div className={classes.Container}>
                         <ArticleMeta article={article} canModify={canModify} />
                     </div>
-                    <hr />
                 </div>
 
-                <div className="container page">
+                <div className={classnames(classes.Container)}>
                     <div className="row article-content">
                         <div className="col-xs-12">
                             <h1 className={classes.Title}>{article.title}</h1>

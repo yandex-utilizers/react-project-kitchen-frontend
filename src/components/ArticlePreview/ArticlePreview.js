@@ -9,6 +9,8 @@ import { Avatar, Icon, Tag } from "ui-kit";
 import classes from "./ArticlePreview.module.scss";
 
 const ArticlePreview = props => {
+    const common = useSelector(state => state.common);
+    const { currentUser } = common;
     const dispatch = useDispatch();
     const article = useSelector(store =>
         store.articleList.articles.find(
@@ -35,6 +37,26 @@ const ArticlePreview = props => {
             makeNotFavorite(article.slug);
         } else {
             makeFavorite(article.slug);
+        }
+    };
+
+    const renderLikeButton = () => {
+        if (
+            currentUser &&
+            currentUser.username &&
+            currentUser.username !== article.author.username
+        ) {
+            return (
+                <button
+                    className={`${classes.LikeButton} ${
+                        article.favorited ? classes.active : ""
+                    }`}
+                    onClick={handleClick}
+                >
+                    <span>{article.favoritesCount}</span>
+                    <Icon type="Like" />
+                </button>
+            );
         }
     };
 
@@ -74,15 +96,7 @@ const ArticlePreview = props => {
                             )}
                         </span>
                     </div>
-                    <button
-                        className={`${classes.LikeButton} ${
-                            article.favorited ? classes.active : ""
-                        }`}
-                        onClick={handleClick}
-                    >
-                        <span>{article.favoritesCount}</span>
-                        <Icon type="Like" />
-                    </button>
+                    {renderLikeButton()}
                 </div>
                 <Link
                     to={`${ROUTES.ARTICLE}/${article.slug}`}
