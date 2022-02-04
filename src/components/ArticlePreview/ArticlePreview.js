@@ -1,15 +1,12 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { ROUTES } from '../../routes/'
-import {
-    ARTICLE_FAVORITED,
-    ARTICLE_UNFAVORITED,
-} from "../../constants/actionTypes";
+import isEmpty from "lodash/isEmpty";
+import { ROUTES } from "routes";
+import agent from "agent";
+import { ARTICLE_FAVORITED, ARTICLE_UNFAVORITED } from "constants/actionTypes";
 import { Avatar, Icon, Tag } from "ui-kit";
-import agent from "../../agent";
 import classes from "./ArticlePreview.module.scss";
-
 
 const ArticlePreview = props => {
     const dispatch = useDispatch();
@@ -43,14 +40,20 @@ const ArticlePreview = props => {
 
     return (
         <article className={classes.ArticlePreview}>
-            <div className={classes.Image}></div>
+            <Link to={`/@${article.author.username}`}>
+                <img
+                    className={classes.Image}
+                    src={article.image}
+                    alt={article.title}
+                />
+            </Link>
             <div className={classes.PreviewContent}>
                 <div className={classes.Header}>
                     <Link
                         to={`/@${article.author.username}`}
                         className={classes.Avatar}
                     >
-                        <Avatar size={48} />
+                        <Avatar size={48} user={article.author.image} />
                     </Link>
                     <div className={classes.Info}>
                         <Link
@@ -90,13 +93,13 @@ const ArticlePreview = props => {
                     <div className={classes.Footer}>
                         <span className={classes.Link}> Read more</span>
                         <ul className={classes.TagList}>
-                            {article.tagList.map(tag => {
-                                return (
+                            {article.tagList.map(tag =>
+                                !isEmpty(tag) ? (
                                     <li key={tag}>
                                         <Tag>{tag}</Tag>
                                     </li>
-                                );
-                            })}
+                                ) : null
+                            )}
                         </ul>
                     </div>
                 </Link>

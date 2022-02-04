@@ -25,7 +25,7 @@ export const Editor = ({ className }) => {
         tagInput: "",
         tagList: [],
         title: "",
-        image: ""
+        image: "",
     });
     const editor = useSelector(state => state.editor);
     const dispatch = useDispatch();

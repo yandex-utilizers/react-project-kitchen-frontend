@@ -1,80 +1,80 @@
 @import "styles";
 
 .Profile {
-  &_UserInfo {
-    text-align: center;
-    background: #f3f3f3;
-    padding: 32px 0 16px;
-  }
-
-  &_Container {
-    max-width: 950px;
-    width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 15px;
-    padding-right: 15px;
-  }
-
-  &_Row {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    margin-left: -15px;
-    margin-right: -15px;
-  }
-
-  &_UserImage {
-    margin-bottom: 16px;
-    height: 100px;
-    width: 100px;
-    border: 0;
-    border-radius: 100px;
-    vertical-align: middle;
-  }
-
-  &_UserName {
-    margin-bottom: 16px;
-  }
-
-  &_UserDescription {
-    margin-bottom: 16px;
-  }
-
-  &_ArticlesToggle {
-    margin-top: 48px;
-  }
-
-  &_Navigation {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    height: 42px;
-    width: 100%;
-    border-bottom: 1px solid #DDDDE3;
-
-    &Item {
-      float: left;
+    &_UserInfo {
+        text-align: center;
+        background: #f3f3f3;
+        padding: 32px 0 16px;
     }
 
-    &Link {
-      display: block;
-      padding: 0.5em 1em;
-      border: none;
-      border-bottom: 2px solid transparent;
-      background: 0 0;
-      color: $color-secondary;
-
-      &__active {
-        background: #fff;
-        border-bottom: 2px solid $color-accent;
-        color: $color-primary;
-      }
+    &_Container {
+        max-width: 950px;
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 15px;
+        padding-right: 15px;
     }
-  }
 
-  &_FollowUserButton {
-    display: flex;
-    justify-content: flex-end;
-  }
+    &_Row {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        margin-left: -15px;
+        margin-right: -15px;
+    }
+
+    &_UserImage {
+        margin-bottom: 16px;
+        height: 100px;
+        width: 100px;
+        border: 0;
+        border-radius: 100px;
+        vertical-align: middle;
+    }
+
+    &_UserName {
+        margin-bottom: 16px;
+    }
+
+    &_UserDescription {
+        margin-bottom: 16px;
+    }
+
+    &_ArticlesToggle {
+        margin-top: 48px;
+    }
+
+    &_Navigation {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        height: 42px;
+        width: 100%;
+        border-bottom: 1px solid #dddde3;
+
+        &Item {
+            float: left;
+        }
+
+        &Link {
+            display: block;
+            padding: 8px 16px;
+            border: none;
+            border-bottom: 2px solid transparent;
+            background: 0 0;
+            color: $color-secondary;
+
+            &__active {
+                background: #fff;
+                border-bottom: 2px solid $color-accent;
+                color: $color-primary;
+            }
+        }
+    }
+
+    &_FollowUserButton {
+        display: flex;
+        justify-content: flex-end;
+    }
 }

@@ -1,10 +1,9 @@
 import React from "react";
 import { Tag } from "ui-kit";
-import agent from "../../agent";
+import agent from "agent";
 import classes from "./Tags.module.scss";
 
-const Tags = props => {
-    const tags = props.tags;
+const Tags = ({ tags, onClickTag }) => {
     return (
         <div className="col-md-3">
             <div className={classes.Panel}>
@@ -14,7 +13,7 @@ const Tags = props => {
                         {tags.map(tag => {
                             const handleClick = ev => {
                                 ev.preventDefault();
-                                props.onClickTag(
+                                onClickTag(
                                     tag,
                                     page => agent.Articles.byTag(tag, page),
                                     agent.Articles.byTag(tag)
@@ -22,9 +21,11 @@ const Tags = props => {
                             };
 
                             return (
-                                <Tag key={tag} onClick={handleClick}>
-                                    {tag}
-                                </Tag>
+                                tag && (
+                                    <Tag key={tag} onClick={handleClick}>
+                                        {tag}
+                                    </Tag>
+                                )
                             );
                         })}
                     </div>

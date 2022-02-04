@@ -103,6 +103,7 @@ const SettingsForm = ({ currentUser, onSubmitForm }) => {
                 </fieldset>
                 <fieldset className={classes.FormGroup}>
                     <Input
+                        autoComplete="on"
                         errors={settings.errors}
                         id="password"
                         label="Новый пароль"

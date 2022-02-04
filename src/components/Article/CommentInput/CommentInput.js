@@ -16,11 +16,13 @@ export const CommentInput = ({ className, currentUser, slug }) => {
 
     const handleSubmitForm = event => {
         event.preventDefault();
-        const payload = agent.Comments.create(slug, {
-            body: body,
-        });
-        setBody("");
-        dispatch({ type: ADD_COMMENT, payload });
+        if (slug && body) {
+            const payload = agent.Comments.create(slug, {
+                body: body,
+            });
+            setBody("");
+            dispatch({ type: ADD_COMMENT, payload });
+        }
     };
 
     return (

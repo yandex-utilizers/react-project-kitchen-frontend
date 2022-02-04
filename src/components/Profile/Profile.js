@@ -31,7 +31,7 @@ const EditProfileSettings = ({ isUser }) => {
     return null;
 };
 
-const FollowUserButton = ({ user, isUser}) => {
+const FollowUserButton = ({ user, isUser }) => {
     const dispatch = useDispatch();
 
     if (isUser) {
@@ -44,18 +44,21 @@ const FollowUserButton = ({ user, isUser}) => {
             dispatch({
                 type: UNFOLLOW_USER,
                 payload: agent.Profile.unfollow(user.username),
-            })
+            });
         } else {
             dispatch({
                 type: FOLLOW_USER,
                 payload: agent.Profile.follow(user.username),
-            })
+            });
         }
     };
 
     return (
         <div className={classes.Profile_FollowUserButton}>
-            <Button typeIcon={user.following ? "Minus" : "Plus"} onClick={handleClick}>
+            <Button
+                typeIcon={user.following ? "Minus" : "Plus"}
+                onClick={handleClick}
+            >
                 {user.following ? "Отписаться" : "Подписаться"}
             </Button>
         </div>
@@ -86,7 +89,10 @@ export const Profile = () => {
             <ul className={classes.Profile_Navigation}>
                 <li className={classes.Profile_NavigationItem}>
                     <Link
-                        className={classnames(classes.Profile_NavigationLink, classes.Profile_NavigationLink__active)}
+                        className={classnames(
+                            classes.Profile_NavigationLink,
+                            classes.Profile_NavigationLink__active
+                        )}
                         to={`/@${profile.username}`}
                     >
                         Ваши посты
@@ -103,15 +109,13 @@ export const Profile = () => {
                 </li>
             </ul>
         );
-    }
+    };
 
     if (!profile) {
         return null;
     }
 
-    const isUser =
-        currentUser &&
-        profile.username === currentUser.username;
+    const isUser = currentUser && profile.username === currentUser.username;
 
     return (
         <div className={classes.Profile}>
@@ -125,12 +129,11 @@ export const Profile = () => {
                     <h4 className={classes.Profile_UserName}>
                         {profile.username}
                     </h4>
-                    <p className={classes.Profile_UserDescription}>{profile.bio}</p>
+                    <p className={classes.Profile_UserDescription}>
+                        {profile.bio}
+                    </p>
                     <EditProfileSettings isUser={isUser} />
-                    <FollowUserButton
-                        isUser={isUser}
-                        user={profile}
-                    />
+                    <FollowUserButton isUser={isUser} user={profile} />
                 </div>
             </div>
 
@@ -148,4 +151,4 @@ export const Profile = () => {
             </div>
         </div>
     );
-}
+};

@@ -1,16 +1,21 @@
 @import "styles";
 
 .TabControls {
-    border-bottom: 1px solid $color-devider;
     ul {
         display: flex;
+        height: 58px;
+        border-bottom: 1px solid $color-devider;
     }
 
     li {
         padding: 16px 24px;
+        height: 58px;
+        background: 0 0;
+        border: none;
+        border-bottom: 2px solid transparent;
 
         &.active {
-            border-bottom: 1px solid $color-accent;
+            border-bottom: 2px solid $color-accent;
             color: $color-primary;
 
             a {

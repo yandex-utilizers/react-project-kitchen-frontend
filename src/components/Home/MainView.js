@@ -1,15 +1,15 @@
 import React from "react";
-import agent from "../../agent";
 import { useSelector, useDispatch } from "react-redux";
-import { CHANGE_TAB } from "../../constants/actionTypes";
+import { Link } from "react-router-dom";
+import agent from "agent";
+import { CHANGE_TAB } from "constants/actionTypes";
 import { ArticleList } from "../index";
-import { store } from "store";
 import classes from "./MainView.module.scss";
 
 const YourFeedTab = props => {
     if (props.token) {
-        const clickHandler = ev => {
-            ev.preventDefault();
+        const clickHandler = event => {
+            event.preventDefault();
             props.onTabClick(
                 "feed",
                 agent.Articles.feed,
@@ -19,9 +19,9 @@ const YourFeedTab = props => {
 
         return (
             <li className={props.tab === "feed" ? classes.active : ""}>
-                <a href="" onClick={clickHandler}>
+                <Link to="" onClick={clickHandler}>
                     Ваша лента
-                </a>
+                </Link>
             </li>
         );
     }
@@ -29,29 +29,29 @@ const YourFeedTab = props => {
 };
 
 const GlobalFeedTab = props => {
-    const clickHandler = ev => {
-        ev.preventDefault();
+    const clickHandler = event => {
+        event.preventDefault();
         props.onTabClick("all", agent.Articles.all, agent.Articles.all());
     };
     return (
         <li className={props.tab === "all" ? classes.active : ""}>
-            <a href="" onClick={clickHandler}>
+            <Link to="" onClick={clickHandler}>
                 Лента
-            </a>
+            </Link>
         </li>
     );
 };
 
-const TagFilterTab = props => {
-    if (!props.tag) {
+const TagFilterTab = ({ tag }) => {
+    if (!tag) {
         return null;
     }
 
     return (
         <li className={classes.active}>
-            <a href="">
-                <i className="ion-pound"></i> {props.tag}
-            </a>
+            <Link to="">
+                <i className="ion-pound" /> {tag}
+            </Link>
         </li>
     );
 };
@@ -59,7 +59,6 @@ const TagFilterTab = props => {
 const MainView = props => {
     const articleListProps = useSelector(store => store.articleList);
     const token = useSelector(store => store.common.token);
-    const tags = useSelector(store => store.home.tags);
 
     const dispatch = useDispatch();
     const onTabClick = (tab, pager, payload) =>

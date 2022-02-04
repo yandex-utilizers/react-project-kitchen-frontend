@@ -18,7 +18,7 @@ const ProfileFavorites = () => {
     const username = params.username;
 
     useEffect(() => {
-        const pager = () => agent.Articles.favoritedBy(username, currentPage)
+        const pager = () => agent.Articles.favoritedBy(username, currentPage);
         const payload = Promise.all([
             agent.Profile.get(username),
             agent.Articles.favoritedBy(username),
@@ -41,7 +41,10 @@ const ProfileFavorites = () => {
 
             <li className={classes.ProfileFavorites_NavigationItem}>
                 <Link
-                    className={classnames(classes.ProfileFavorites_NavigationLink, classes.ProfileFavorites_NavigationLink__active)}
+                    className={classnames(
+                        classes.ProfileFavorites_NavigationLink,
+                        classes.ProfileFavorites_NavigationLink__active
+                    )}
                     to={`/@${profile.username}/favorites`}
                 >
                     Любимые посты
@@ -49,6 +52,6 @@ const ProfileFavorites = () => {
             </li>
         </ul>
     );
-}
+};
 
 export default ProfileFavorites;
