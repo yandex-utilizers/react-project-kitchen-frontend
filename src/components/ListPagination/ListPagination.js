@@ -1,8 +1,9 @@
 import React from "react";
-import agent from "../../agent";
 import { useDispatch } from "react-redux";
-import { SET_PAGE } from "../../constants/actionTypes";
+import { Link } from "react-router-dom";
 import cn from "classnames";
+import agent from "agent";
+import { SET_PAGE } from "constants/actionTypes";
 import classes from "./ListPagination.module.scss";
 
 const ListPagination = props => {
@@ -45,9 +46,9 @@ const ListPagination = props => {
                             onClick={onClick}
                             key={v.toString()}
                         >
-                            <a className={classes.Link} href="">
+                            <Link className={classes.Link} to="">
                                 {v + 1}
-                            </a>
+                            </Link>
                         </li>
                     );
                 })}

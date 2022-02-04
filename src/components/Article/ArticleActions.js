@@ -1,32 +1,49 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import classnames from "classnames";
-import { DELETE_ARTICLE } from "../../constants/actionTypes";
+import { useHistory } from "react-router-dom";
+import agent from "agent";
+import { DELETE_ARTICLE } from "constants/actionTypes";
+import { ROUTES } from "routes";
 import { Button } from "ui-kit";
-import agent from "../../agent";
-import classes from './ArticleActions.module.scss';
+import classes from "./ArticleActions.module.scss";
 
-
-const ArticleActions = props => {
-
+const ArticleActions = ({ article, canModify }) => {
     const dispatch = useDispatch();
+    const history = useHistory();
 
-    const onClickDelete = payload => dispatch({ type: DELETE_ARTICLE, payload });
-
-    const article = props.article;
-    const del = () => {
-        onClickDelete(agent.Articles.del(article.slug));
+    const handleDelete = () => {
+        const payload = agent.Articles.del(article.slug);
+        dispatch({ type: DELETE_ARTICLE, payload });
+        history.goBack();
     };
-    if (props.canModify) {
+
+    const handleEdit = () => {
+        history.push(`${ROUTES.EDITOR}/${article.slug}`);
+    };
+
+    if (canModify) {
         return (
             <span className={classes.ActionsButtons}>
-                    <Button className={classes.Button}><i className="ion-edit"></i> Редактировать объявление</Button>
-                    <Button theme='Danger' className={classes.Button}><i className="ion-trash-a"></i> Удалить объявление</Button>
+                <Button
+                    className={classes.Button}
+                    typeIcon="Edit"
+                    onClick={handleEdit}
+                >
+                    Редактировать объявление
+                </Button>
+                <Button
+                    className={classes.Button}
+                    theme="Danger"
+                    typeIcon="Trash"
+                    onClick={handleDelete}
+                >
+                    Удалить объявление
+                </Button>
             </span>
         );
     }
 
-    return <span></span>;
+    return <span />;
 };
 
 export default ArticleActions;

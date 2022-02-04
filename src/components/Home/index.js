@@ -1,20 +1,19 @@
-import MainView from "./MainView";
-import Intro from "./Intro";
 import React, { useEffect } from "react";
-import Tags from "./Tags";
-import agent from "../../agent";
-import { connect, useSelector, useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import agent from "agent";
 import {
     HOME_PAGE_LOADED,
     HOME_PAGE_UNLOADED,
     APPLY_TAG_FILTER,
-} from "../../constants/actionTypes";
+} from "constants/actionTypes";
+import Intro from "./Intro";
+import MainView from "./MainView";
+import Tags from "./Tags";
 
 const Promise = global.Promise;
 
-const Home = props => {
+const Home = () => {
     const dispatch = useDispatch();
-    const appName = useSelector(store => store.common.appName);
     const token = useSelector(store => store.common.token);
     const tags = useSelector(store => store.home.tags);
 
@@ -38,6 +37,7 @@ const Home = props => {
         return () => {
             onUnload();
         };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [token]);
 
     return (
