@@ -12,7 +12,7 @@ const ArticleMeta = ({ article, canModify }) => {
                     to={`/@${article.author.username}`}
                     className={classes.Avatar}
                 >
-                    <Avatar size={48} />
+                    <Avatar size={48} user={article.author.image} />
                 </Link>
                 <div className={classes.Info}>
                     <Link

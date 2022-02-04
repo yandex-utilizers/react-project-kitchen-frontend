@@ -1,6 +1,50 @@
 @import "styles";
 
 .ProfileFavorites {
+    &_UserInfo {
+        text-align: center;
+        background: #f3f3f3;
+        padding: 32px 0 16px;
+    }
+
+    &_Container {
+        max-width: 950px;
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    &_Row {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        margin-left: -15px;
+        margin-right: -15px;
+    }
+
+    &_UserImage {
+        margin-bottom: 16px;
+        height: 100px;
+        width: 100px;
+        border: 0;
+        border-radius: 100px;
+        vertical-align: middle;
+    }
+
+    &_UserName {
+        margin-bottom: 16px;
+    }
+
+    &_UserDescription {
+        margin-bottom: 16px;
+    }
+
+    &_ArticlesToggle {
+        margin-top: 48px;
+    }
+
     &_Navigation {
         margin: 0;
         padding: 0;
